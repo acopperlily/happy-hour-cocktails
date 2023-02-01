@@ -25,7 +25,7 @@
   justify-content: space-between;
   align-items: center;
   background-image: linear-gradient(150deg, rgb(247, 247, 201), rgb(191, 142, 191));
-  background-attachment: fixed;
+  /* background-attachment: fixed; */
 }
 
 header {
