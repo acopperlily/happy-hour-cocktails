@@ -3,7 +3,6 @@ import './App.css'
 import Footer from './components/Footer';
 import Header from './components/Header';
 import MainLogic from './components/MainLogic';
-import cocktails from './assets/multiCocktails.png';
 
 function App() {
 

@@ -25,15 +25,11 @@
   justify-content: space-between;
   align-items: center;
   background-image: linear-gradient(150deg, rgb(247, 247, 201), rgb(191, 142, 191));
-  /* background-attachment: fixed; */
+  background-attachment: fixed;
 }
 
 header {
   width: 100%;
-  height: 10%;
-  /* padding: 0.7rem; */
-  /* background: rgba(248, 173, 10, 0.9); */
-  /* background: var(--bg-color); */
   background: rgba(188, 118, 188, 0.6);
   display: grid;
   grid-template-columns: 1rem minmax(auto, max-content) 2rem;
@@ -60,7 +56,7 @@ header {
 .info {
   font-size: 0.8rem;
   border-radius: 50%;
-  outline: solid 1px;
+  /* outline: solid 1px; */
   cursor: pointer;
   /* box-shadow: -1px 2px 5px var(--text-color); */
   background: var(--highlight-color);
@@ -77,18 +73,14 @@ main {
 }
 
 .searchContainer {
-  width: 80%;
-  /* display: flex; */
-  /* margin: 0 auto; */
+  width: 100%;
 }
 
 form {
   background: var(--orange-color);
-  width: 100%;
-  /* min-height: 10vh; */
+  width: 80%;
   padding: 1rem;
   border-radius: 15px;
-  /* margin-bottom: 2rem; */
   margin: 0 auto;
 
   display: flex;
@@ -169,6 +161,10 @@ p {
   align-items: center;
   justify-content: center;
   gap: 2%;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 img {
@@ -209,7 +205,6 @@ img {
   align-items: center;
   gap: 1.1vw;
   margin-top: 2%;
-  /* margin-bottom: 2rem; */
 }
 
 .dotContainer {
@@ -270,7 +265,6 @@ img {
 table {
   background: var(--bg-color);
   border-radius: 15px;
-  /* width: 100%; */
   padding: 1rem 2rem;
 }
 
@@ -326,38 +320,32 @@ a:hover {
   font-size: 1rem;
 }
 
-@media screen and (min-width: 390px) and (orientation: landscape) {
-  /* header {
-    padding: 0.6rem;
-    grid-template-columns: 2rem 1fr 2rem;
-  } */
+@media screen and (min-width: 420px) {
 
-  /* .imageContainer {
-    width: 25%;
-  } */
-
-  .instructions {
-    /* width: 50%; */
-  }
-
-  .detailsContainer {
-    /* width: 50%; */
-  }
 
   footer {
     flex-direction: row;
     align-items: center;
   }
 
-  /* .links {
-    padding-top: 0.3rem;
-  } */
+  .links {
+    padding-top: 6px;
+  }
+
 }
 
 @media screen and (min-width: 700px) {
 
-  main {
-    gap: 2rem;
+  header {
+    padding: 0.2rem 2%;
+  }
+
+  .logo {
+    font-size: 3rem;
+  }
+
+  .info {
+    font-size: 1.2rem;
   }
 
   h2 {
@@ -368,22 +356,20 @@ a:hover {
     font-size: 1.5rem;
   }
 
-  form {
-    width: 40%;
-  }
-
-  .imageContainer {
-    /* width: 60%; */
-  }
-
-
   td {
     font-size: 1rem;
     line-height: 1.4rem;
   }
+
+  .arrow {
+    font-size: 2rem;
+  }
+
+  form, .ingredients, .instructions {
+    max-width: 610px;
+  }
   
   .instructions {
-    /* width: 50%; */
     font-size: 1rem;
   }
 
@@ -394,12 +380,15 @@ a:hover {
 }
 
 @media screen and (min-width: 1200px) {
+
+  .searchContainer {
+    margin-bottom: 3rem;
+  }
+
   .fetchedInfo {
-    width: 75%;
-    /* height: 100%; */
+    width: 80%;
     flex-direction: row;
-    align-items: baseline
-    /* align-items: center; */
+    align-items: baseline;
   }
 
   h3 {
@@ -410,14 +399,11 @@ a:hover {
     width: 50%;
     height: 100%;
     justify-content: space-between;
-    /* align-items: flex-end; */
   }
 
   .detailsContainer {
     width: 50%;
     flex-direction: column;
-    /* justify-content: flex-start; */
-    /* justify-content: center; */
   }
 
   .ingredients, .instructions {
