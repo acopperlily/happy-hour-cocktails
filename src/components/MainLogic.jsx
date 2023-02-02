@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import margaritas from '../margaritas';
 import rum from '../rum';
 import gin from "../gin";
+import allDrinks from '../drinks';
 import Form from "./Form";
 import Image from "./Image";
 import Ingredients from './Ingredients';
@@ -38,9 +39,11 @@ const Main = () => {
       let drinks; // this will change with API call
       if (searchQuery === 'rum') drinks = rum;
       else if (searchQuery === 'gin') drinks = gin;
-      else drinks = margaritas;
+      else if (searchQuery === 'margarita') drinks = margaritas;
+      else drinks = allDrinks;
       console.log('drinks inside effect:', drinks);
       let details = [];
+      if (drinks.length > 20) drinks = drinks.slice(0, 20);
       for (let drink of drinks) {
         // console.log('async:', drink);
         details.push({
