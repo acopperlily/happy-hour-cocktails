@@ -5,7 +5,7 @@ const NavDots = ({ num, current, handleClick }) => {
   const dots = Array(num).fill('');
 
   return (
-    <div className="navDots" onClick={e => handleClick(e)}>
+    <div className="navDots noSelect" onClick={e => handleClick(e)}>
       {dots.map((dot, i) => (
         <div 
           key={i}

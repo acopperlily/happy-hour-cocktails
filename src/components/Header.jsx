@@ -5,9 +5,7 @@ const Header = props => {
   return (
     <header>
       <h1 className="logo">Happy Hour Cocktails</h1>
-      <div className="infoContainer">
-        <FaInfoCircle className="info" />
-      </div>
+      <FaInfoCircle className="info" />
     </header>
   );
 };

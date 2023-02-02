@@ -1,22 +1,22 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 const Ingredients = ({ measurements, ingredients }) => {
 
   const items = ingredients.map((item, index) => (
-    <tr key={index}>
-      <td className='measure'>{measurements[index]}</td>
-      <td className='item'>{item}</td>
-    </tr>
+    <Fragment key={index}>
+      <span className="measure">{measurements[index]}</span>
+      <span className='item'>{item}</span>
+    </Fragment>
   ));
 
   return (
     <div className="ingredients">
       <h3>Ingredients</h3>
-      <table>
-        <tbody className='itemContainer'>
+      <div className="itemContainer">
+        <div className="itemGrid">
           {items}
-        </tbody>
-      </table>
+        </div>
+      </div>
     </div>
   );
 };
