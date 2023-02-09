@@ -93,6 +93,7 @@ input {
   border-radius: 5px;
   padding: 0.2rem 0.5rem;
   background: rgb(252, 252, 236);
+  color: var(--text-color);
   width: 90%;
 }
 
@@ -110,6 +111,15 @@ button {
 
 button:hover {
   background: rgb(29, 249, 17);
+}
+
+select {
+  background: rgb(252, 252, 236);
+  color: var(--text-color);
+  text-transform: capitalize;
+  border: none;
+  border-radius: 5px;
+  padding: 0.2rem 0.5rem;
 }
 
 h2, h3 {
@@ -237,7 +247,8 @@ img {
 }
 
 .active {
-  animation: grow .25s;
+  -webkit-animation: grow 0.25s;
+  animation: grow 0.25s;
   width: 0.6rem;
   height: 0.6rem;
   opacity: 1;
