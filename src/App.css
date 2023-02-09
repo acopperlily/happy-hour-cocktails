@@ -30,7 +30,7 @@
 
 header {
   width: 100%;
-  background: rgba(188, 118, 188, 0.6);
+  background: rgba(188, 118, 188, 0.5);
   display: grid;
   grid-template-columns: 2rem minmax(auto, max-content) 2rem;
   align-items: center;
@@ -42,11 +42,12 @@ header {
 .logo {
   padding: 0.7rem 1rem;
   grid-column: 2 / 3;
-  font-family: 'Yeseva One', sans-serif;
+  font-family: 'Playfair Display', serif;
   font-size: 2rem;
+  font-weight: 900;
   color: var(--highlight-color);
   text-align: center;
-  text-shadow: -1px 1px 0px var(--text-color);
+  text-shadow: 1px 1px 1px var(--text-color);
 }
 
 .info {
@@ -114,8 +115,16 @@ button:hover {
 h2, h3 {
   padding: 0 1.5rem;
   text-align: center;
-  font-family: 'Yeseva One', sans-serif;
+  font-family: 'Playfair Display', serif;
   color: var(--heading-color);
+}
+
+h2 {
+  font-weight: 800;
+}
+
+h3 {
+  font-weight: 700;
 }
 
 label {
@@ -232,6 +241,15 @@ img {
   width: 0.6rem;
   height: 0.6rem;
   opacity: 1;
+}
+
+@-webkit-keyframes grow {
+  from {
+    -webkit-transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(1);
+  }
 }
 
 @keyframes grow {
