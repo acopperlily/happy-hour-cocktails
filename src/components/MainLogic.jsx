@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import margaritas from '../margaritas';
 import rum from '../rum';
 import gin from "../gin";
-import allDrinks from '../drinks';
+import someDrinks from '../drinks';
 import Form from "./Form";
 import Image from "./Image";
 import Ingredients from './Ingredients';
@@ -11,12 +11,13 @@ import Instructions from './Instructions';
 import NavDots from "./NavDots";
 
 const Main = props => {
-  const [drinks, setDrinks] = useState([]);
+  const [allDrinks, setAllDrinks] = useState([]);
+  const [currentDrinks, setCurrentDrinks] = useState([]);
   const [ingredientsList, setIngredientsList] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [currentDrink, setCurrentDrink] = useState(0);
   const [filter, setFilter] = useState('none');
-  // console.log('drinks:', margaritas);
+  // console.log('allDrinks:', margaritas);
   // console.log('main props', props.randomDrink);
 
 
@@ -44,24 +45,24 @@ const Main = props => {
 
   useEffect(() => {
     const getDrinks = async () => {
-      let drinks; // this will change with API call
+      let dranks; // this will change with API call
       let data;
       let res;
       if (!searchQuery) {
         data = await fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php');
         res = await data.json();
-        drinks = res.drinks;
-        console.log('fetch drinks', drinks);
+        dranks = res.drinks;
+        console.log('fetch drinks', dranks);
       }
 
-      else if (searchQuery === 'rum') drinks = rum;
-      else if (searchQuery === 'gin') drinks = gin;
-      else if (searchQuery === 'margarita') drinks = margaritas;
-      else drinks = allDrinks;
-      console.log('drinks inside effect:', drinks);
+      else if (searchQuery === 'rum') dranks = rum;
+      else if (searchQuery === 'gin') dranks = gin;
+      else if (searchQuery === 'margarita') dranks = margaritas;
+      else dranks = someDrinks;
+      console.log('drinks inside effect:', dranks);
       let details = [];
-      if (drinks.length > 20) drinks = drinks.slice(0, 20);
-      for (let drink of drinks) {
+      if (dranks.length > 20) drinks = dranks.slice(0, 20);
+      for (let drink of dranks) {
         // console.log('async:', drink);
         details.push({
           id: drink.idDrink,
@@ -74,7 +75,8 @@ const Main = props => {
       }
       console.log('DEETS:', details);
       setCurrentDrink(0);
-      setDrinks(details);
+      setAllDrinks(details);
+      setCurrentDrinks(details);
     }
     console.log('effect, current drink:', currentDrink);
     setIngredientsList([]);
@@ -82,16 +84,17 @@ const Main = props => {
   }, [searchQuery]);
 
   useEffect(() => {
-    console.log('drinks:', drinks);
-    const formattedFilter = filter[0].toUpperCase() + filter.slice(1);
-    const filteredDrinks = drinks.filter(drink => drink.ingredients.includes(formattedFilter));
+    console.log('drinks:', allDrinks);
+    // const formattedFilter = filter[0].toUpperCase() + filter.slice(1);
+    // const filteredDrinks = allDrinks.filter(drink => drink.ingredients.includes(formattedFilter));
+    const filteredDrinks = allDrinks.filter(drink => drink.ingredients.map(item => item.toLowerCase()).includes(filter.toLowerCase()));
     console.log('filteredDrinks:', filteredDrinks);
-    setDrinks(filteredDrinks);
+    setCurrentDrinks(filteredDrinks);
     setCurrentDrink(0);
   }, [filter]);
 
   const scrollImage = (i) => {
-    const len = drinks.length;
+    const len = currentDrinks.length;
     if (i === -1 && currentDrink === 0) i = len - 1;
     setCurrentDrink(currentDrink => (currentDrink + i) % len);
   };
@@ -110,18 +113,18 @@ const Main = props => {
 
   return (
     <main>
-      {drinks.length && <Form handleSubmit={handleSubmit} drinks={drinks} filter={filter} handleFilter={handleFilter}/>}
+      {currentDrinks.length && <Form handleSubmit={handleSubmit} allDrinks={allDrinks} currentDrinks={currentDrinks} filter={filter} handleFilter={handleFilter}/>}
 
-      {drinks.length && <div className="fetchedInfo">
+      {currentDrinks.length && <div className="fetchedInfo">
         <div className="imageInfo">
-          <h2>{drinks[currentDrink].name}</h2>
-          <Image image={drinks[currentDrink].image} scroll={scrollImage} len={drinks.length}/>
-          {drinks.length > 1 && <NavDots num={drinks.length} current={currentDrink} handleClick={imageNav}/>}
+          <h2>{currentDrinks[currentDrink].name}</h2>
+          <Image image={currentDrinks[currentDrink].image} scroll={scrollImage} len={currentDrinks.length}/>
+          {currentDrinks.length > 1 && <NavDots num={currentDrinks.length} current={currentDrink} handleClick={imageNav}/>}
         </div>
 
         <div className="detailsContainer">
-          <Ingredients measurements={drinks[currentDrink].measurements} ingredients={drinks[currentDrink].ingredients} />
-          <Instructions instructions={drinks[currentDrink].instructions} />
+          <Ingredients measurements={currentDrinks[currentDrink].measurements} ingredients={currentDrinks[currentDrink].ingredients} />
+          <Instructions instructions={currentDrinks[currentDrink].instructions} />
         </div>
       </div>}
 
