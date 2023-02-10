@@ -5,9 +5,9 @@ const Image = props => {
 
   return (
     <div className="imageContainer noSelect">
-      {props.len > 1 && <FaChevronLeft className="arrow" onClick={e => props.scroll(-1)}/>}
+      {props.len > 1 && <FaChevronLeft className="arrow sideArrow" onClick={e => props.scroll(-1)}/>}
       <img src={props.image} alt="" />
-      {props.len > 1 && <FaChevronRight className="arrow" onClick={e => props.scroll(1)} />}
+      {props.len > 1 && <FaChevronRight className="arrow sideArrow" onClick={e => props.scroll(1)} />}
     </div>
   );
 };

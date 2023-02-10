@@ -119,7 +119,7 @@ const Main = props => {
         <div className="imageInfo">
           <h2>{currentDrinks[currentDrink].name}</h2>
           <Image image={currentDrinks[currentDrink].image} scroll={scrollImage} len={currentDrinks.length}/>
-          {currentDrinks.length > 1 && <NavDots num={currentDrinks.length} current={currentDrink} handleClick={imageNav}/>}
+          {currentDrinks.length > 1 && <NavDots num={currentDrinks.length} current={currentDrink} handleClick={imageNav} scroll={scrollImage}/>}
         </div>
 
         <div className="detailsContainer">

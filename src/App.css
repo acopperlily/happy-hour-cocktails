@@ -32,7 +32,7 @@ header {
   width: 100%;
   background: rgba(188, 118, 188, 0.5);
   display: grid;
-  grid-template-columns: 2rem minmax(auto, max-content) 2rem;
+  grid-template-columns: 10% minmax(auto, max-content) 10%;
   align-items: center;
   justify-content: space-between;
   opacity: 0.9;
@@ -40,10 +40,12 @@ header {
 }
 
 .logo {
-  padding: 0.7rem 1rem;
+  padding: 0.8rem;
+  padding: calc(0.4rem + 1vh);
   grid-column: 2 / 3;
   font-family: 'Playfair Display', serif;
   font-size: 2rem;
+  font-size: calc(1.1rem + 4vw);
   font-weight: 900;
   color: var(--highlight-color);
   text-align: center;
@@ -52,6 +54,8 @@ header {
 
 .info {
   font-size: 0.9rem;
+  font-size: calc(0.5rem + 2vw);
+  margin: 0 auto;
   border: 1px solid;
   border-radius: 50%;
   cursor: pointer;
@@ -69,13 +73,13 @@ main {
   gap: 3rem;
 }
 
-.searchContainer {
+.formContainer {
   width: 100%;
 }
 
 form {
   background: var(--orange-color);
-  width: 80%;
+  width: 94%;
   padding: 1rem;
   border-radius: 15px;
   margin: 0 auto;
@@ -167,6 +171,7 @@ p {
 }
 
 .imageInfo {
+  /* width: 94%; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -189,7 +194,7 @@ p {
 }
 
 img {
-  width: 80%;
+  width: 94%;
   border-radius: 15px;
 }
 
@@ -197,11 +202,16 @@ img {
   color: var(--highlight-color);
   opacity: 0.7;
   font-size: 1.5rem;
+  font-size: calc(1rem + 2vw);
   cursor: pointer;
 }
 
 .arrow:hover {
   opacity: 1;
+}
+
+.sideArrow {
+  display: none;
 }
 
 .clicked {
@@ -221,11 +231,20 @@ img {
   }
 }
 
+.navContainer {
+  width: 100%;
+  padding: 0 2%;
+  margin-top: 2%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .navDots {
   display: flex;
   align-items: center;
   gap: 1.1vw;
-  margin-top: 2%;
+  /* margin-top: 2%; */
 }
 
 .dotContainer {
@@ -282,7 +301,7 @@ img {
 }
 
 .ingredients {
-  width: 80%;
+  width: 94%;
   display: flex;
   flex-direction: column;
 }
@@ -292,7 +311,6 @@ img {
   color: var(--text-color);
   border-radius: 15px;
   padding: 1.2rem 0;
-  font-size: 0.7rem;
 }
 
 .itemGrid {
@@ -303,12 +321,20 @@ img {
   gap: 0.3rem;
 }
 
+.itemGrid span {
+  font-size: 0.9rem;
+}
+
 .measure {
   text-align: right;
 }
 
 .instructions {
-  width: 80%;
+  width: 94%;
+}
+
+#actualInstructions {
+  font-size: 0.9rem;
 }
 
 .instructions p {
@@ -330,7 +356,7 @@ footer {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.7rem;
+  gap: 0.5rem;
 }
 
 footer span {
@@ -381,16 +407,16 @@ a:hover {
 
 @media screen and (min-width: 700px) {
 
-  header {
+  /* header {
     padding: 0.2rem 2%;
-  }
+  } */
 
   .logo {
     font-size: 3rem;
   }
 
   .info {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
 
   h2 {
@@ -401,12 +427,26 @@ a:hover {
     font-size: 1.5rem;
   }
 
-  .arrow {
+  img {
+    width: 90%;
+  }
+
+  .sideArrow {
+    display: inline;
     font-size: 2rem;
   }
 
+  .bottomArrow {
+    display: none;
+  }
+
+  .navContainer {
+    justify-content: center;
+  }
+
   form, .ingredients, .instructions {
-    max-width: 610px;
+    /* max-width: 650px; */
+    width: 80%;
   }
   
   .itemGrid {
@@ -431,8 +471,9 @@ a:hover {
 
 @media screen and (min-width: 1200px) {
 
-  .searchContainer {
+  .formContainer {
     margin-bottom: 3rem;
+    max-width: 900px;
   }
 
   input {
