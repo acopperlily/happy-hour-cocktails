@@ -4,6 +4,8 @@
   --heading-color: rgb(89, 1, 89);
   --text-color: rgb(63, 1, 63);
   --bg-color: rgba(161, 124, 161, 0.5);
+  --light-bg-color: rgb(247, 247, 213);
+  --input-bg-color: rgb(252, 252, 236);
 }
 
 *, *::after, *::before {
@@ -24,7 +26,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  background-image: linear-gradient(150deg, rgb(247, 247, 213), rgb(182, 159, 182));
+  background-image: linear-gradient(150deg, var(--light-bg-color), rgb(182, 159, 182));
   background-attachment: fixed;
 }
 
@@ -60,7 +62,12 @@ header {
   border-radius: 50%;
   cursor: pointer;
   background: var(--highlight-color);
-  color: rgb(247, 247, 213);
+  color: var(--light-bg-color);
+  opacity: 0.8;
+}
+
+.info:hover {
+  opacity: 1;
 }
 
 main {
@@ -86,19 +93,50 @@ form {
 
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
-input {
+input, select {
   font-family: 'Raleway', sans-serif;
   border: none;
   border-radius: 5px;
   padding: 0.2rem 0.5rem;
-  background: rgb(252, 252, 236);
+  background: var(--input-bg-color);
   color: var(--text-color);
-  width: 90%;
+  width: 10rem;
+}
+
+/* This keeps the input background from turning color when you autofill */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px var(--input-bg-color) inset !important;
+  -webkit-text-fill-color: var(--text-color) !important;
+}
+
+input:autofill {
+  box-shadow: 0 0 0 1000px var(--input-bg-color) inset !important;
+  color: var(--text-color) !important;
+}
+
+.inputIcon {
+  font-size: 1rem;
+  color: var(--highlight-color);
+  opacity: 0.7;
+  margin-left: -1.5rem;
+  cursor: pointer;
+}
+
+.inputIcon:hover {
+  opacity: 1;
+}
+
+.searchContainer, .filterContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
 }
 
 button {
@@ -118,12 +156,11 @@ button:hover {
 }
 
 select {
-  background: rgb(252, 252, 236);
-  color: var(--text-color);
   text-transform: capitalize;
-  border: none;
-  border-radius: 5px;
-  padding: 0.2rem 0.5rem;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
 }
 
 h2, h3 {
@@ -143,7 +180,7 @@ h3 {
 
 label {
   color: var(--heading-color);
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 h2 {
@@ -390,7 +427,7 @@ a:hover {
   }
 }
 
-@media screen and (min-width: 420px) {
+@media screen and (orientation: landscape) {
 
 
   footer {
@@ -405,7 +442,7 @@ a:hover {
 
 }
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 800px) {
 
   /* header {
     padding: 0.2rem 2%;

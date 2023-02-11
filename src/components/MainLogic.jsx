@@ -61,7 +61,7 @@ const Main = props => {
       else dranks = someDrinks;
       console.log('drinks inside effect:', dranks);
       let details = [];
-      if (dranks.length > 20) drinks = dranks.slice(0, 20);
+      if (dranks.length > 20) dranks = dranks.slice(0, 20);
       for (let drink of dranks) {
         // console.log('async:', drink);
         details.push({
@@ -79,6 +79,7 @@ const Main = props => {
       setCurrentDrinks(details);
     }
     console.log('effect, current drink:', currentDrink);
+    setFilter('none');
     setIngredientsList([]);
     getDrinks();
   }, [searchQuery]);
@@ -87,9 +88,13 @@ const Main = props => {
     console.log('drinks:', allDrinks);
     // const formattedFilter = filter[0].toUpperCase() + filter.slice(1);
     // const filteredDrinks = allDrinks.filter(drink => drink.ingredients.includes(formattedFilter));
-    const filteredDrinks = allDrinks.filter(drink => drink.ingredients.map(item => item.toLowerCase()).includes(filter.toLowerCase()));
-    console.log('filteredDrinks:', filteredDrinks);
-    setCurrentDrinks(filteredDrinks);
+    if (filter !== 'none') {
+      const filteredDrinks = allDrinks.filter(drink => drink.ingredients.map(item => item.toLowerCase()).includes(filter.toLowerCase()));
+      console.log('filteredDrinks:', filteredDrinks);
+      setCurrentDrinks(filteredDrinks);
+    } else {
+      setCurrentDrinks(allDrinks);
+    }
     setCurrentDrink(0);
   }, [filter]);
 
@@ -111,9 +116,15 @@ const Main = props => {
     setFilter(e.target.value);
   };
 
+  const deleteInput = e => {
+    console.log('delete? show filter?', filter);
+    // setSearchQuery('');
+    setFilter('none');
+  };
+
   return (
     <main>
-      {currentDrinks.length && <Form handleSubmit={handleSubmit} allDrinks={allDrinks} currentDrinks={currentDrinks} filter={filter} handleFilter={handleFilter}/>}
+      {currentDrinks.length && <Form searchQuery={searchQuery} handleSubmit={handleSubmit} allDrinks={allDrinks} currentDrinks={currentDrinks} filter={filter} handleFilter={handleFilter} deleteInput={deleteInput}/>}
 
       {currentDrinks.length && <div className="fetchedInfo">
         <div className="imageInfo">

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from 'react';
+import { FaChevronDown, FaTimes } from "react-icons/fa";
 
 const Form = props => {
   const [searchValue, setSearchValue] = useState('');
@@ -11,14 +12,14 @@ const Form = props => {
     setShowFilter(false);
   };
 
-  console.log('form prop ingredients:', props.allDrinks);
+  // console.log('form prop ingredients:', props.allDrinks);
 
   useEffect(() => {
     const items = [];
     for (let drink of props.allDrinks) {
       for (let ingredient of drink.ingredients) {
         let item = ingredient.toLowerCase();
-        console.log('item in useEffect:', item);
+        // console.log('item in useEffect:', item);
         if (!items.includes(item)) {
           items.push(item);
         }
@@ -26,9 +27,17 @@ const Form = props => {
     }
     items.sort();
     console.log('items array in useEffect:', items);
+    console.log('show filter?', showFilter);
     setIngredients(items);
     if (props.allDrinks.length > 1) setShowFilter(true);
+    setSearchValue(props.searchQuery);
   }, [props.allDrinks]);
+
+  const clearSearch = () => {
+    console.log('clar?');
+    setSearchValue('');
+    setShowFilter(false);
+  };
 
   return (
     <div className="formContainer">
@@ -44,11 +53,12 @@ const Form = props => {
             value={searchValue}
             onChange={handleChange}
           />
+          <FaTimes className="inputIcon" onClick={clearSearch} />
         </div>
 
         {showFilter && <div className="filterContainer">
-          <label htmlFor="filter">Filter</label>
-          <select name="filter" id="filter" value={props.filter} onChange={e => props.handleFilter(e)}>
+          <label htmlFor="filter">Filter by Ingredient</label>
+          <select name="filter" id="filter" value={props.filter} onChange={e => props.handleFilter(e)} style={{backgroundImage: `url(${<FaChevronDown />})`, backgroundRepeat: 'no-repeat'}}>
           <option value="none">-- None --</option>
           {ingredients.map((item, i) => (
             <option
@@ -59,6 +69,7 @@ const Form = props => {
             </option>
           ))}
           </select>
+          <FaChevronDown className="inputIcon" />
         </div>}
 
         <button type="submit">{showFilter ? 'Filter Drinks' : 'Get Drinks'}</button>
