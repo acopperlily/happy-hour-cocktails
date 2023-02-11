@@ -5,7 +5,7 @@ const Header = props => {
   return (
     <header>
       <h1 className="logo">Happy Hour Cocktails</h1>
-      <FaInfoCircle className="info" />
+      <FaInfoCircle className="info" onClick={props.toggleModal} />
     </header>
   );
 };

@@ -19,6 +19,65 @@
   font-family: 'Raleway', sans-serif;
 }
 
+.modal {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  padding: 0.5rem;
+  padding: calc(0.2rem + 3vw);
+  width: 90%;
+  height: 80%;
+  z-index: 1;
+  background: var(--text-color);
+  color: var(--light-bg-color);
+  border-radius: 15px;
+  overflow: scroll;
+  /* box-shadow: 0px 0px 18px var(--highlight-color); */
+}
+
+.modal a {
+  padding: 0;
+}
+
+.exitContainer {
+  /* border: 1px solid yellow; */
+  margin-left: auto;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.exitContainer:hover {
+  opacity: 1;
+}
+
+.exit {
+  color: var(--highlight-color);
+  font-size: 1.2rem;
+  font-size: calc(0.8rem + 2vw);
+}
+
+.modalTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-size: calc(1rem + 2vw);
+  text-align: center;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  color: var(--highlight-color);
+}
+
+.modal p {
+  padding: 0.5rem 0;
+}
+
 .wrapper {
   min-height: 100vh;
   width: 100vw;
