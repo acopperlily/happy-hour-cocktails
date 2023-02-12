@@ -28,8 +28,9 @@
   margin: auto;
   padding: 0.5rem;
   padding: calc(0.2rem + 3vw);
+  padding-bottom: 3rem;
   width: 90%;
-  height: 80%;
+  height: 90%;
   z-index: 1;
   background: var(--text-color);
   color: var(--light-bg-color);
@@ -164,7 +165,7 @@ input, select {
   padding: 0.2rem 0.5rem;
   background: var(--input-bg-color);
   color: var(--text-color);
-  width: 10rem;
+  min-width: 9rem;
 }
 
 /* This keeps the input background from turning color when you autofill */
@@ -178,11 +179,21 @@ input:autofill {
   color: var(--text-color) !important;
 }
 
+.inputContainer {
+  display: flex;
+}
+
+.deleteContainer {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -1.2rem;
+}
+
 .inputIcon {
-  font-size: 1rem;
+  font-size: 16px;
   color: var(--highlight-color);
   opacity: 0.7;
-  margin-left: -1.5rem;
   cursor: pointer;
 }
 
@@ -193,9 +204,11 @@ input:autofill {
 .searchContainer, .filterContainer {
   display: flex;
   flex-wrap: wrap;
+  /* flex-direction: column; */
   justify-content: center;
   align-items: center;
   gap: 0.3rem;
+  flex: 1 0 100%;
 }
 
 button {
@@ -207,6 +220,7 @@ button {
   font-weight: 500;
   border-radius: 15px;
   padding: 0.7rem 2rem;
+  width: 10.1rem;
   cursor: pointer;
 }
 

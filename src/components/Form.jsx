@@ -46,14 +46,18 @@ const Form = props => {
 
         <div className="searchContainer">
           <label htmlFor="search">Search by Name</label>
-          <input
-            type="text"
-            name="search" 
-            id="search"
-            value={searchValue}
-            onChange={handleChange}
-          />
-          <FaTimes className="inputIcon" onClick={clearSearch} />
+          <div className="inputContainer">
+            <input
+              type="text"
+              name="search" 
+              id="search"
+              value={searchValue}
+              onChange={handleChange}
+            />
+            <div className="deleteContainer">
+              <FaTimes className="inputIcon" onClick={clearSearch} />
+            </div>
+          </div>
         </div>
 
         {showFilter && <div className="filterContainer">
@@ -64,15 +68,15 @@ const Form = props => {
             value={props.filter}
             onChange={e => props.handleFilter(e)} 
           >
-          <option value="none">-- None --</option>
-          {ingredients.map((item, i) => (
-            <option
-              key={i}
-              value={item}
-            >
-              {item}
-            </option>
-          ))}
+            <option value="none">-- None --</option>
+            {ingredients.map((item, i) => (
+              <option
+                key={i}
+                value={item}
+              >
+                {item}
+              </option>
+            ))}
           </select>
         </div>}
 
