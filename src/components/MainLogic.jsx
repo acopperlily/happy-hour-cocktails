@@ -61,9 +61,7 @@ const Main = props => {
       else dranks = someDrinks;
       console.log('drinks inside effect:', dranks);
       let details = [];
-      if (dranks.length > 20) dranks = dranks.slice(0, 20);
       for (let drink of dranks) {
-        // console.log('async:', drink);
         details.push({
           id: drink.idDrink,
           name: drink.strDrink,
@@ -86,8 +84,6 @@ const Main = props => {
 
   useEffect(() => {
     console.log('drinks:', allDrinks);
-    // const formattedFilter = filter[0].toUpperCase() + filter.slice(1);
-    // const filteredDrinks = allDrinks.filter(drink => drink.ingredients.includes(formattedFilter));
     if (filter !== 'none') {
       const filteredDrinks = allDrinks.filter(drink => drink.ingredients.map(item => item.toLowerCase()).includes(filter.toLowerCase()));
       console.log('filteredDrinks:', filteredDrinks);
@@ -118,7 +114,6 @@ const Main = props => {
 
   const deleteInput = e => {
     console.log('delete? show filter?', filter);
-    // setSearchQuery('');
     setFilter('none');
   };
 

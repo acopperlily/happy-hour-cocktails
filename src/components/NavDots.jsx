@@ -5,6 +5,14 @@ const NavDots = ({ num, current, handleClick, scroll }) => {
 
   const dots = Array(num).fill('');
 
+  const showHiddenDots = e => {
+    e.target.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+      inline: 'center'
+    });
+  };
+
   return (
     <div className="navContainer noSelect">
       <FaChevronLeft className="arrow bottomArrow" onClick={e => scroll(-1)} />
@@ -13,9 +21,14 @@ const NavDots = ({ num, current, handleClick, scroll }) => {
           <div 
             key={i}
             value={i}
-            className={current === i ? 'dotContainer active' : 'dotContainer'}
+            className="dotContainer"
           >
-            <div value={i} className={current === i ? 'dot active' : 'dot'}></div>
+            <div
+              value={i}
+              className={current === i ? 'dot active' : 'dot'}
+              onAnimationEnd={showHiddenDots}
+            >
+            </div>
           </div>
         ))}
       </div>
