@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from 'react';
-import { FaChevronDown, FaTimes } from "react-icons/fa";
+import { FaTimes } from "react-icons/fa";
 
 const Form = props => {
   const [searchValue, setSearchValue] = useState('');
@@ -58,7 +58,12 @@ const Form = props => {
 
         {showFilter && <div className="filterContainer">
           <label htmlFor="filter">Filter by Ingredient</label>
-          <select name="filter" id="filter" value={props.filter} onChange={e => props.handleFilter(e)} style={{backgroundImage: `url(${<FaChevronDown />})`, backgroundRepeat: 'no-repeat'}}>
+          <select
+            name="filter"
+            id="filter"
+            value={props.filter}
+            onChange={e => props.handleFilter(e)} 
+          >
           <option value="none">-- None --</option>
           {ingredients.map((item, i) => (
             <option
@@ -69,7 +74,6 @@ const Form = props => {
             </option>
           ))}
           </select>
-          <FaChevronDown className="inputIcon" />
         </div>}
 
         <button type="submit">{showFilter ? 'Filter Drinks' : 'Get Drinks'}</button>

@@ -220,6 +220,13 @@ select {
   -webkit-appearance: none;
   appearance: none;
   cursor: pointer;
+  background-image: url('./assets/chevronDownTrans.svg');
+  background-repeat: no-repeat;
+  background-position: 96%;
+}
+
+select:hover {
+  background-image: url('./assets/chevronDownFull.svg');
 }
 
 h2, h3 {
