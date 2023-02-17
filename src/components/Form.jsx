@@ -45,7 +45,7 @@ const Form = props => {
       <form onSubmit={e => props.handleSubmit(e, searchValue)}>
 
         <div className="searchContainer">
-          <label htmlFor="search">Search by Name</label>
+          <label htmlFor="search">Search</label>
           <div className="inputContainer">
             <input
               type="text"
@@ -61,7 +61,7 @@ const Form = props => {
         </div>
 
         {showFilter && <div className="filterContainer">
-          <label htmlFor="filter">Filter by Ingredient</label>
+          <label htmlFor="filter">Filter</label>
           <select
             name="filter"
             id="filter"

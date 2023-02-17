@@ -15,7 +15,7 @@ const NavDots = ({ num, current, handleClick, scroll }) => {
 
   return (
     <div className="navContainer noSelect">
-      <FaChevronLeft className="arrow bottomArrow" onClick={e => scroll(-1)} />
+      <FaChevronLeft className="arrow" onClick={e => scroll(-1)} />
       <div className="navDots" onClick={e => handleClick(e)}>
         {dots.map((dot, i) => (
           <div 
@@ -32,7 +32,7 @@ const NavDots = ({ num, current, handleClick, scroll }) => {
           </div>
         ))}
       </div>
-      <FaChevronRight className="arrow bottomArrow" onClick={e => scroll(1)} />
+      <FaChevronRight className="arrow" onClick={e => scroll(1)} />
     </div>
   );
 };

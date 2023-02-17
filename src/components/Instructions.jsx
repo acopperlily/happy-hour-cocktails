@@ -8,7 +8,7 @@ const Instructions = ({ instructions }) => {
   return (
     <div className="instructions">
       <h3>Instructions</h3>
-      <p style={style} id={'actualInstructions'}>{instructions}</p>
+      <p style={style} id='actualInstructions'>{instructions}</p>
     </div>
   );
 };

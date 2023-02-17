@@ -16,6 +16,7 @@
 
 .App {
   height: 100%;
+  width: 100%;
   font-family: 'Raleway', sans-serif;
 }
 
@@ -81,13 +82,14 @@
 
 .wrapper {
   min-height: 100vh;
-  width: 100vw;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   background-image: linear-gradient(150deg, var(--light-bg-color), rgb(182, 159, 182));
   background-attachment: fixed;
+  /* overflow: hidden; */
 }
 
 header {
@@ -98,7 +100,7 @@ header {
   align-items: center;
   justify-content: space-between;
   opacity: 0.9;
-  margin-bottom: 3rem;
+  /* margin-bottom: 3rem; */
 }
 
 .logo {
@@ -132,12 +134,15 @@ header {
 
 main {
   width: 100%;
+  max-width: 1200px;
   height: 100%;
-  margin-bottom: auto;
+  padding: 2rem 0;
+  /* margin-bottom: auto; */
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 3rem;
+  flex: 1 0 100%;
 }
 
 .formContainer {
@@ -155,7 +160,8 @@ form {
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
-  gap: 1rem;
+  column-gap: 0.3rem;
+  row-gap: 1rem;
 }
 
 input, select {
@@ -208,7 +214,7 @@ input:autofill {
   justify-content: center;
   align-items: center;
   gap: 0.3rem;
-  flex: 1 0 100%;
+  /* flex: 1 0 100%; */
 }
 
 button {
@@ -220,12 +226,17 @@ button {
   font-weight: 500;
   border-radius: 15px;
   padding: 0.7rem 2rem;
-  width: 10.1rem;
+  /* width: 10.1rem; */
   cursor: pointer;
 }
 
 button:hover {
+  transition: all 0.5s;
   background: rgb(29, 249, 17);
+}
+
+button:active {
+  transform: scale(0.98);
 }
 
 select {
@@ -279,6 +290,8 @@ p {
 
 .fetchedInfo {
   height: 100%;
+  width: 100%;
+  /* max-width: 1000px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -288,19 +301,16 @@ p {
 }
 
 .imageInfo {
-  /* width: 94%; */
+  width: 94%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   gap: 0.8rem;
 }
 
 .imageContainer {
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2%;
 }
 
 .noSelect {
@@ -311,8 +321,12 @@ p {
 }
 
 img {
-  width: 94%;
+  width: 100%;
+  object-fit: fill;
+  object-fit: cover;
+  object-fit: contain;
   border-radius: 15px;
+  /* flex: 1 1 100%; */
 }
 
 .arrow {
@@ -325,10 +339,6 @@ img {
 
 .arrow:hover {
   opacity: 1;
-}
-
-.sideArrow {
-  display: none;
 }
 
 .clicked {
@@ -352,25 +362,29 @@ img {
   width: 100%;
   max-width: 100vw;
   padding: 0 2%;
-  margin-top: 2%;
+  /* margin-top: 2%; */
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1.5rem;
+  /* overflow: hidden; */
 }
 
 .navDots {
-  max-width: 60%;
-  overflow-x: hidden;
+  max-width: 80%;
+  overflow: hidden;
   display: flex;
   align-items: center;
+  /* justify-content: center; */
   /* gap: 1.1vw; */
+  flex: 0 10 fit-content;
 }
 
 .dotContainer {
-  /* border: 1px solid yellow; */
+  /* border: 1px solid rgb(13, 255, 0); */
   /* max-width: 100%; */
   width: 7vw;
-  height: 7vw;
+  height: 4vw;
   /* max-width: 1.5rem; */
   padding: 1vw;
   cursor: pointer;
@@ -380,6 +394,7 @@ img {
 }
 
 .dot {
+  /* border: 1px solid purple; */
   width: 0.3rem;
   height: 0.3rem;
   background: var(--highlight-color);
@@ -416,7 +431,7 @@ img {
 .detailsContainer {
   width: 100%;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 2rem;
@@ -457,6 +472,7 @@ img {
 
 #actualInstructions {
   font-size: 0.9rem;
+  line-height: 1.5rem;
 }
 
 .instructions p {
@@ -512,6 +528,92 @@ a:hover {
   }
 }
 
+@media screen and (orientation: landscape) /*and (max-height: 600px)*/ {
+  .logo {
+    font-size: 2rem;
+  }
+
+  main {
+    /* padding: 1rem 0; */
+    gap: 1rem;
+  }
+
+  .fetchedInfo {
+    height: 100%;
+    margin: 1rem 0.5rem;
+    /* padding: 1rem 0; */
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
+    column-gap: 0.5rem;
+  }
+
+  .imageInfo {
+    /* padding: 0; */
+    width: 30%;
+    height: 100%;
+    justify-content: space-around;
+    /* align-self: center; */
+    gap: 0.4rem;
+  }
+
+  .imageContainer {
+    width: 90%;
+  }
+
+  .imageDiv {
+    /* width: 100vw; */
+  }
+
+  .navContainer {
+    width: 95%;
+    /* padding: 0;
+    margin: 0; */
+  }
+
+  .navDots {
+    /* padding: 0; */
+    /* margin: 0; */
+    height: 3vw;
+    width: 80%;
+  }
+
+  .arrow {
+    font-size: 1.2rem;
+  }
+
+  .detailsContainer {
+    height: 100%;
+    width: 65%;
+    max-width: 500px;
+    /* justify-content: space-between; */
+    /* align-items: flex-start; */
+    row-gap: 1rem;
+  }
+
+  .ingredients, .instructions {
+    width: 100%;
+  }
+
+  .itemContainer {
+    /* max-height: 30vh;
+    overflow-y: scroll; */
+  }
+
+  .itemGrid span {
+    font-size: 0.8rem;
+  }
+
+  #actualInstructions {
+    font-size: 0.8rem;
+  }
+
+  .instructions p {
+    /* max-height: 30vh;
+    overflow-y: scroll; */
+  }
+}
+
 @media screen and (orientation: landscape) {
 
 
@@ -527,7 +629,7 @@ a:hover {
 
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 800px) and (min-height: 601px) {
 
   /* header {
     padding: 0.2rem 2%;
@@ -549,18 +651,14 @@ a:hover {
     font-size: 1.5rem;
   }
 
-  img {
-    width: 90%;
-  }
-
-  .sideArrow {
+  /* .sideArrow {
     display: inline;
     font-size: 2rem;
-  }
+  } */
 
-  .bottomArrow {
+  /* .bottomArrow {
     display: none;
-  }
+  } */
 
   .navContainer {
     justify-content: center;
@@ -595,7 +693,7 @@ a:hover {
 
   .formContainer {
     margin-bottom: 3rem;
-    max-width: 900px;
+    max-width: 1000px;
   }
 
   input {
