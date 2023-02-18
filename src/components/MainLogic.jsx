@@ -17,6 +17,7 @@ const Main = props => {
   const [searchQuery, setSearchQuery] = useState('');
   const [currentDrink, setCurrentDrink] = useState(0);
   const [filter, setFilter] = useState('none');
+  const [isLoading, setIsLoading] = useState(true);
   // console.log('allDrinks:', margaritas);
   // console.log('main props', props.randomDrink);
 
@@ -41,6 +42,7 @@ const Main = props => {
     console.log(searchValue);
     searchValue = searchValue.trim();
     setSearchQuery(searchValue);
+    setIsLoading(true);
   };
 
   useEffect(() => {
@@ -72,6 +74,7 @@ const Main = props => {
         });
       }
       console.log('DEETS:', details);
+      setIsLoading(false);
       setCurrentDrink(0);
       setAllDrinks(details);
       setCurrentDrinks(details);
@@ -119,9 +122,10 @@ const Main = props => {
 
   return (
     <main>
-      {currentDrinks.length && <Form searchQuery={searchQuery} handleSubmit={handleSubmit} allDrinks={allDrinks} currentDrinks={currentDrinks} filter={filter} handleFilter={handleFilter} deleteInput={deleteInput}/>}
+      {isLoading ? <h1 className="loading">Loading...</h1> 
+        : <><Form searchQuery={searchQuery} handleSubmit={handleSubmit} allDrinks={allDrinks} currentDrinks={currentDrinks} filter={filter} handleFilter={handleFilter} deleteInput={deleteInput}/>
 
-      {currentDrinks.length && <div className="fetchedInfo">
+      <div className="fetchedInfo">
         <div className="imageInfo">
           <h2>{currentDrinks[currentDrink].name}</h2>
           <Image image={currentDrinks[currentDrink].image} scroll={scrollImage} len={currentDrinks.length}/>
@@ -132,7 +136,7 @@ const Main = props => {
           <Ingredients measurements={currentDrinks[currentDrink].measurements} ingredients={currentDrinks[currentDrink].ingredients} />
           <Instructions instructions={currentDrinks[currentDrink].instructions} />
         </div>
-      </div>}
+      </div></>}
 
     </main>
   );

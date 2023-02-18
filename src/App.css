@@ -20,6 +20,13 @@
   font-family: 'Raleway', sans-serif;
 }
 
+.loading {
+  color: var(--text-color);
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 800;
+}
+
 .modal {
   position: absolute;
   left: 0;
@@ -136,12 +143,13 @@ header {
 
 main {
   width: 100%;
-  max-width: 1200px;
+  max-width: 600px;
   height: 100%;
   padding: 2rem 0;
   /* margin-bottom: auto; */
   display: flex;
   flex-direction: column;
+  /* justify-content: space-around; */
   align-items: center;
   gap: 3rem;
   flex: 1 0 100%;
@@ -154,6 +162,7 @@ main {
 form {
   background: var(--orange-color);
   width: 94%;
+  /* width: min-content; */
   padding: 1rem;
   border-radius: 15px;
   margin: 0 auto;
@@ -293,7 +302,7 @@ p {
 .fetchedInfo {
   height: 100%;
   width: 100%;
-  max-width: 1600px;
+  /* max-width: 1600px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -305,7 +314,7 @@ p {
 
 .imageInfo {
   width: 94%;
-  max-width: 400px;
+  /* max-width: 400px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -524,7 +533,7 @@ a:hover {
   font-size: 1rem;
 }
 
-@media screen and (min-width: 350px) {
+/* @media screen and (min-width: 350px) {
   .itemGrid {
     font-size: 0.8rem;
   }
@@ -532,9 +541,9 @@ a:hover {
   .instructions p {
     font-size: 0.8rem;
   }
-}
+} */
 
-@media screen and (min-width: 650px) and (orientation: landscape) /* and (max-height: 600px)*/ {
+@media screen and (min-width: 650px) /*and (orientation: landscape) /* and (max-height: 600px)*/ {
   .logo {
     font-size: 2.7rem;
   }
@@ -544,8 +553,8 @@ a:hover {
   }
 
   main {
-    /* padding: 1rem 0; */
-    gap: 1rem;
+    max-width: 1200px;
+    gap: 3rem;
   }
 
   form {
@@ -637,9 +646,18 @@ a:hover {
     /* max-height: 30vh;
     overflow-y: scroll; */
   }
+
+  footer {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .links {
+    padding-top: 6px;
+  }
 }
 
-@media screen and (orientation: landscape) {
+/* @media screen and (orientation: landscape) {
 
 
   footer {
@@ -652,7 +670,7 @@ a:hover {
   }
 
 
-}
+} */
 
 /* @media screen and (min-width: 800px) and (min-height: 601px) {
 
