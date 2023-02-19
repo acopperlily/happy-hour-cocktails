@@ -9,6 +9,8 @@ import Image from "./Image";
 import Ingredients from './Ingredients';
 import Instructions from './Instructions';
 import NavDots from "./NavDots";
+import errorWater from "../errorWater";
+import waterImg from '../assets/lemonWater.jpg';
 
 const Main = props => {
   const [allDrinks, setAllDrinks] = useState([]);
@@ -18,6 +20,7 @@ const Main = props => {
   const [currentDrink, setCurrentDrink] = useState(0);
   const [filter, setFilter] = useState('none');
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
   // console.log('allDrinks:', margaritas);
   // console.log('main props', props.randomDrink);
 
@@ -61,13 +64,16 @@ const Main = props => {
       else if (searchQuery === 'gin') dranks = gin;
       else if (searchQuery === 'margarita') dranks = margaritas;
       else dranks = someDrinks;
+      if (error) {
+        dranks = errorWater;
+      }
       console.log('drinks inside effect:', dranks);
       let details = [];
       for (let drink of dranks) {
         details.push({
           id: drink.idDrink,
           name: drink.strDrink,
-          image: drink.strDrinkThumb,
+          image: error ? waterImg : drink.strDrinkThumb,
           instructions: drink.strInstructions,
           measurements: getList(drink, 'strMeasure'),
           ingredients: getList(drink, 'strIngredient')
