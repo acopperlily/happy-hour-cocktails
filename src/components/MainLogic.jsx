@@ -43,48 +43,48 @@ const Main = props => {
     e.preventDefault();
     console.log(e);
     console.log(searchValue);
-    searchValue = searchValue.trim();
+    searchValue = searchValue.trim().toLowerCase();
     setSearchQuery(searchValue);
     setIsLoading(true);
   };
 
   useEffect(() => {
     const getDrinks = async () => {
-      let dranks; // this will change with API call
-      let data;
-      let res;
-      if (!searchQuery) {
-        data = await fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php');
-        res = await data.json();
-        dranks = res.drinks;
-        console.log('fetch drinks', dranks);
+      let url = 'https://www.thecocktaildb.com/api/json/v1/1/';
+
+      url += searchQuery
+        ? `search.php?s=${searchQuery}`
+        : 'random.php';
+
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+        const dranks = data.drinks;
+        console.log('fetch drinks:', res);
+        let details = [];
+
+        for (let drink of dranks) {
+          details.push({
+            id: drink.idDrink,
+            name: drink.strDrink,
+            image: error ? waterImg : drink.strDrinkThumb,
+            instructions: drink.strInstructions,
+            measurements: getList(drink, 'strMeasure'),
+            ingredients: getList(drink, 'strIngredient')
+          });
+        }
+        console.log('DEETS:', details);
+        setIsLoading(false);
+        setCurrentDrink(0);
+        setAllDrinks(details);
+        setCurrentDrinks(details);
+      } catch (err) {
+        console.log('Error:', err);
+        setError(true);
       }
 
-      else if (searchQuery === 'rum') dranks = rum;
-      else if (searchQuery === 'gin') dranks = gin;
-      else if (searchQuery === 'margarita') dranks = margaritas;
-      else dranks = someDrinks;
-      if (error) {
-        dranks = errorWater;
-      }
-      console.log('drinks inside effect:', dranks);
-      let details = [];
-      for (let drink of dranks) {
-        details.push({
-          id: drink.idDrink,
-          name: drink.strDrink,
-          image: error ? waterImg : drink.strDrinkThumb,
-          instructions: drink.strInstructions,
-          measurements: getList(drink, 'strMeasure'),
-          ingredients: getList(drink, 'strIngredient')
-        });
-      }
-      console.log('DEETS:', details);
-      setIsLoading(false);
-      setCurrentDrink(0);
-      setAllDrinks(details);
-      setCurrentDrinks(details);
     }
+    
     console.log('effect, current drink:', currentDrink);
     setFilter('none');
     setIngredientsList([]);

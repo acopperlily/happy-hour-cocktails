@@ -7,7 +7,7 @@ function Footer() {
 
     <footer>
 
-      <p><span>&copy; 2022 &#8212; 2023 </span> <a href="https://aprilcopley.netlify.app" target='_blank'>April Copley</a></p>
+      <p><span>&copy; 2022—2023 </span> <a href="https://aprilcopley.netlify.app" target='_blank'>April Copley</a></p>
 
       <div className="links">
 

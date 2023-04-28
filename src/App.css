@@ -4,8 +4,9 @@
   --heading-color: rgb(89, 1, 89);
   --text-color: #3f013f;
   --bg-color: #a17ca180;
-  --light-bg-color: rgb(247, 247, 213);
-  --input-bg-color: rgb(252, 252, 236);
+  /* --light-bg-color: rgb(247, 247, 213); */
+  --light-bg-color: rgb(251, 246, 237);
+  /* --input-bg-color: rgb(248, 248, 240); */
 }
 
 *, *::after, *::before {
@@ -59,14 +60,13 @@
   width: 2rem;
   height: 2rem;
   cursor: pointer;
-  opacity: 0.7;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .exitContainer:hover {
-  opacity: 1;
+  opacity: 0.7;
 }
 
 .exit {
@@ -96,9 +96,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  background-image: linear-gradient(150deg, var(--light-bg-color), rgb(182, 159, 182));
-  background-attachment: fixed;
-  /* overflow: hidden; */
+  background-color: var(--light-bg-color);
 }
 
 header {
@@ -134,11 +132,10 @@ header {
   cursor: pointer;
   background: var(--highlight-color);
   color: var(--light-bg-color);
-  opacity: 0.8;
 }
 
 .info:hover {
-  opacity: 1;
+  opacity: 0.8;
 }
 
 main {
@@ -180,19 +177,19 @@ input, select {
   border: none;
   border-radius: 5px;
   padding: 0.2rem 0.5rem;
-  background: var(--input-bg-color);
+  background: var(--light-bg-color);
   color: var(--text-color);
   min-width: 9rem;
 }
 
 /* This keeps the input background from turning color when you autofill */
 input:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0 1000px var(--input-bg-color) inset !important;
+  -webkit-box-shadow: 0 0 0 1000px var(--light-bg-color) inset !important;
   -webkit-text-fill-color: var(--text-color) !important;
 }
 
 input:autofill {
-  box-shadow: 0 0 0 1000px var(--input-bg-color) inset !important;
+  box-shadow: 0 0 0 1000px var(--light-bg-color) inset !important;
   color: var(--text-color) !important;
 }
 
@@ -210,12 +207,11 @@ input:autofill {
 .inputIcon {
   font-size: 16px;
   color: var(--highlight-color);
-  opacity: 0.7;
   cursor: pointer;
 }
 
 .inputIcon:hover {
-  opacity: 1;
+  opacity: 0.7;
 }
 
 .searchContainer, .filterContainer {
@@ -256,13 +252,13 @@ select {
   -webkit-appearance: none;
   appearance: none;
   cursor: pointer;
-  background-image: url('./assets/chevronDownTrans.svg');
+  background-image: url('./assets/chevronDownFull.svg');
   background-repeat: no-repeat;
   background-position: 96%;
 }
 
 select:hover {
-  background-image: url('./assets/chevronDownFull.svg');
+  background-image: url('./assets/chevronDownTrans.svg');
 }
 
 h2, h3 {
@@ -344,14 +340,13 @@ img {
 
 .arrow {
   color: var(--highlight-color);
-  opacity: 0.7;
   font-size: 1.5rem;
   font-size: calc(1rem + 2vw);
   cursor: pointer;
 }
 
 .arrow:hover {
-  opacity: 1;
+  opacity: 0.7;
 }
 
 .clicked {
@@ -412,7 +407,6 @@ img {
   height: 0.3rem;
   background: var(--highlight-color);
   border-radius: 50%;
-  opacity: 0.7;
 }
 
 .active {
@@ -420,7 +414,6 @@ img {
   animation: grow 0.25s;
   width: 0.6rem;
   height: 0.6rem;
-  opacity: 1;
 }
 
 @-webkit-keyframes grow {
@@ -504,7 +497,7 @@ footer {
   width: 100vw;
   height: 7vh;
   background: rgba(37, 0, 37, 0.9);
-  color: white;
+  color: var(--light-bg-color);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -513,16 +506,14 @@ footer {
 }
 
 footer span {
-  opacity: 0.7;
   padding-right: 0.2rem;
 }
 
 a {
   text-decoration: none;
-  color: rgb(255, 255, 255);
+  color: var(--light-bg-color);
   padding-right: 0.7rem;
   cursor: pointer;
-  opacity: 0.7;
 }
 
 a:hover {
