@@ -56,31 +56,54 @@ const Main = props => {
         ? `search.php?s=${searchQuery}`
         : 'random.php';
 
+      let details = [];
+
       try {
         const res = await fetch(url);
         const data = await res.json();
         const dranks = data.drinks;
-        console.log('fetch drinks:', res);
-        let details = [];
+        console.log('fetch drinks:', dranks);
 
-        for (let drink of dranks) {
+        if (dranks) {
+          for (let drink of dranks) {
+            details.push({
+              id: drink.idDrink,
+              name: drink.strDrink,
+              image: drink.strDrinkThumb,
+              instructions: drink.strInstructions,
+              measurements: getList(drink, 'strMeasure'),
+              ingredients: getList(drink, 'strIngredient')
+            });
+          }
+        } else {
           details.push({
-            id: drink.idDrink,
-            name: drink.strDrink,
-            image: error ? waterImg : drink.strDrinkThumb,
-            instructions: drink.strInstructions,
-            measurements: getList(drink, 'strMeasure'),
-            ingredients: getList(drink, 'strIngredient')
+            id: 'no',
+            name: 'water', 
+            image: waterImg,
+            instructions: "Uh oh, time to rehydrate! Either your drink is not listed in the database, or you've already had one too many. Please check your spelling or try searching for a different drink.",
+            measurements: ['2', '1'],
+            ingredients: ['Hydrogen', 'Oxygen', 'Ice cubes', 'Lemon wedge']
           });
         }
         console.log('DEETS:', details);
+
+      } catch (err) {
+        console.log('Error:', err);
+        setError(true);
+        details.push({
+          id: 'no',
+          name: 'water', 
+          image: waterImg,
+          instructions: "Uh oh, something went wrong. Time to rehydrate!",
+          measurements: ['2', '1'],
+          ingredients: ['Hydrogen', 'Oxygen', 'Ice cubes', 'Lemon wedge']
+        });
+
+      } finally {
         setIsLoading(false);
         setCurrentDrink(0);
         setAllDrinks(details);
         setCurrentDrinks(details);
-      } catch (err) {
-        console.log('Error:', err);
-        setError(true);
       }
 
     }
