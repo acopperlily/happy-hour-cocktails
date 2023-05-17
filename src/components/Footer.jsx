@@ -5,24 +5,34 @@ function Footer() {
 
   return (
 
-    <footer>
+    <footer className="footer">
 
-      <p><span>&copy; 2022—2023 </span> <a href="https://aprilcopley.netlify.app" target='_blank'>April Copley</a></p>
+      <div className="footer__container container">
 
-      <div className="links">
+        {/* <p><span>&copy; 2022—2023 </span> <a href="https://aprilcopley.netlify.app" target='_blank'>April Copley</a></p> */}
 
-        <a href="https://twitter.com/aprilcopley_dev" target='_blank'>
-          <i><FaTwitter /></i>
-        </a>
+        <div className="footer__info">
+          <span className="footer__dates">&copy; 2022—2023</span>
+          <a href="https://aprilcopley.netlify.app" target="_blank" className="footer__portfolio footer__link clickable">
+            April Copley
+          </a>
+        </div>
 
-        <a href="https://github.com/acopperlily" target='_blank'>
-          <i><FaGithub /></i>
-        </a>
+        <div className="footer__links">
 
-        <a href="https://www.linkedin.com/in/april-copley/" target='_blank'>
-          <i><FaLinkedin /></i>
-        </a>
+          <a className="footer__link clickable" href="https://twitter.com/aprilcopley_dev" target='_blank'>
+            <i><FaTwitter /></i>
+          </a>
 
+          <a className="footer__link clickable" href="https://github.com/acopperlily" target='_blank'>
+            <i><FaGithub /></i>
+          </a>
+
+          <a className="footer__link clickable" href="https://www.linkedin.com/in/april-copley/" target='_blank'>
+            <i><FaLinkedin /></i>
+          </a>
+
+        </div>
       </div>
       
     </footer>
