@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from 'react';
 import { FaTimes } from "react-icons/fa";
+import { FaChevronDown } from "react-icons/fa";
 
 const Form = props => {
   const [searchValue, setSearchValue] = useState('');
@@ -40,49 +41,58 @@ const Form = props => {
   };
 
   return (
-    <div className="formContainer">
-      <h3>Search Drinks</h3>
-      <form onSubmit={e => props.handleSubmit(e, searchValue)}>
+    <section className="hero">
+      <div className="hero__container">
+        <h1 className="hero__title">Every hour is <span className="hero__title_highlight">Happy Hour</span></h1>
+        <p className="hero__text">Thirsty for something different? Search for drinks freshly served up by TheCocktailDB API. Tiny umbrellas not included.</p>
 
-        <div className="searchContainer">
-          <label htmlFor="search">Search</label>
-          <div className="inputContainer">
-            <input
-              type="text"
-              name="search" 
-              id="search"
-              value={searchValue}
-              onChange={handleChange}
-            />
-            <div className="deleteContainer">
-              <FaTimes className="inputIcon" onClick={clearSearch} />
+        <div className="hero__form_container">
+          <form className="hero__form" onSubmit={e => props.handleSubmit(e, searchValue)}>
+            <div className="form__search">
+              <label className="form__label" htmlFor="search">Search by Name</label>
+              <div className="form__input">
+                <input
+                  type="text"
+                  name="search" 
+                  id="search"
+                  value={searchValue}
+                  onChange={handleChange}
+                />
+                <FaTimes className="form__delete_icon form__icon clickable" onClick={clearSearch} />
+
+              </div>
+              <button className="form__btn form__btn_primary clickable" type="submit">Get Drinks</button>
             </div>
-          </div>
+
+            {showFilter && <div className="form__filter">
+              <label className="form__label" htmlFor="filter">Filter by Ingredient</label>
+              <div className="form__select">
+                <select
+                  name="filter"
+                  id="filter"
+                  value={props.filter}
+                  onChange={e => props.handleFilter(e)} 
+                >
+                  <option value="none">-- None --</option>
+                  {ingredients.map((item, i) => (
+                    <option
+                      key={i}
+                      value={item}
+                    >
+                      {item}
+                    </option>
+                  ))}
+                </select>
+                <FaChevronDown className="form__delete_icon form__icon clickable" />
+              </div>
+              <button className="form__btn form__btn_secondary clickable" type="submit">Filter Drinks</button>
+            </div>}
+
+          </form>
         </div>
+      </div>
 
-        {showFilter && <div className="filterContainer">
-          <label htmlFor="filter">Filter</label>
-          <select
-            name="filter"
-            id="filter"
-            value={props.filter}
-            onChange={e => props.handleFilter(e)} 
-          >
-            <option value="none">-- None --</option>
-            {ingredients.map((item, i) => (
-              <option
-                key={i}
-                value={item}
-              >
-                {item}
-              </option>
-            ))}
-          </select>
-        </div>}
-
-        <button type="submit">{showFilter ? 'Filter Drinks' : 'Get Drinks'}</button>
-      </form>
-  </div>
+    </section>
   );
 };
 
