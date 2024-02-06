@@ -6,6 +6,7 @@
   --text-color: #3f013f;
   --bg-color: #a17ca180;
   --bold-bg-color: rgb(79, 2, 109);
+  --test-color: #3e1d57;
   --dark-bg-color: rgb(35, 0, 49);
   /* --light-bg-color: rgb(247, 247, 213); */
   --light-bg-color: rgb(251, 246, 237);
@@ -30,7 +31,7 @@
 
 .loading {
   color: var(--text-color);
-  font-family: 'Playfair Display', serif;
+  font-family: var(--bold-s-ff);
   font-size: 2rem;
   font-weight: 800;
 }
@@ -109,13 +110,14 @@
 .container {
   /* border: 1px dotted yellow; */
   margin: 0 auto;
-  padding: 0 1em;
-  max-width: 100em;
+  /* padding: 0 1em; */
+  max-width: 90em;
 }
 
 .header {
   width: 100%;
   background: var(--bold-bg-color);
+  background-color: var(--test-color);
 }
 
 .header__container {
@@ -142,7 +144,7 @@
 }
 
 .header__info {
-
+  margin-right: 1em;
   font-size: clamp(0.6rem, 0.5rem + 1vw, 1.5rem);
   justify-self: end;
   border: 1px solid var(--highlight-color);
@@ -301,17 +303,6 @@ input:autofill {
   color: var(--text-color) !important;
 }
 
-.inputContainer {
-  /* display: flex; */
-}
-
-.deleteContainer {
-  /* display: inline-flex; */
-  /* align-items: center; */
-  /* justify-content: center; */
-  /* margin-left: -1.2rem; */
-}
-
 .form__delete_icon {
   font-size: 1.4rem;
   color: var(--highlight-color);
@@ -334,61 +325,107 @@ select {
   cursor: pointer;
 }
 
-h2, h3 {
-  padding: 0 1.5rem;
-  text-align: center;
+/* =================
+  Fetched Drink Info
+  ================== */  
+.drink-info__container {
+  width: 100%;
+  background-color: var(--light-bg-color);
+  margin: 4em auto;
+}
+
+/* Drink Image and Nav */
+.drink-info__image-container {
+  /* border: 1px solid red; */
+  width: 100%;
+  max-width: 30em;
+  margin: 0 auto 3em auto;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+}
+
+img {
+  /* border: 2px solid red; */
+  width: 100%;
+  max-width: 100%;
+  border-radius: 15px;
+}
+
+/* Drink Info */
+.drink-info__details-container {
+  /* border: 1px dotted blue; */
+  margin: 0 auto;
+  /* width: 90%; */
+}
+
+.drink-info__title {
+  padding-inline: 0.5em;
+  margin-top: -0.15em;
+  margin-bottom: 1.5em;
   font-family: var(--bold-s-ff);
+  font-size: clamp(2rem, 2rem + 1vw, 3rem);
+  font-weight: 800;
+  text-align: center;
+  line-height: 1;
   color: var(--heading-color);
 }
 
-h2 {
-  font-weight: 800;
+.details__title-wrapper {
+  margin: 0 auto 2em auto;
+  width: max-content;
+  border-bottom: 2px solid var(--highlight-color);
 }
 
-h3 {
-  font-weight: 700;
+.details__title {
+  padding: 0.2em;
+  font-family: var(--light-ss-ff);
+  font-weight: 400;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.3ch;
+  color: var(--heading-color);
+  /* border-bottom: 2px solid var(--highlight-color) */
 }
 
-h2 {
-  font-size: 1.4rem;
-  text-transform: capitalize;
+.details__item-container,
+.details__text-wrapper {
+  /* width: 100%; */
+  background-color: var(--bold-bg-color);
+  background-color: var(--test-color);
+  padding-block: 2rem;
+  padding-inline: clamp(0.5em, 0.4em + 4vw, 4em);
+  margin-bottom: 4em;
 }
 
-h3 {
-  margin-bottom: 0.7rem;
+.details__item-grid {
+  /* border: 1px dashed yellow; */
+  width: max-content;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: max-content max-content;
+  column-gap: 1em;
 }
 
-p {
-  font-size: 0.7rem;
-  line-height: 1.3rem;
+.details__measure {
+  /* width: 50%; */
+  text-align: right;
 }
 
-.fetchedInfo {
-  /* border: 1px solid red; */
-  height: 100%;
-  width: 100%;
-  /* max-width: 1600px; */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 3rem;
-  row-gap: 3rem;
-  /* column-gap: 1%; */
+.details__text {
+  color: var(--light-bg-color);
+  font-size: clamp(0.6rem, 0.6rem + 1vw, 1rem);
+  letter-spacing: 0.05ch;
+  line-height: clamp(1.2em, 1.2em + 2vw, 2em);
 }
 
-.imageInfo {
-  width: 94%;
-  /* max-width: 400px; */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 0.8rem;
-}
-
-.imageContainer {
-  width: 100%;
+.details__instructions {
+  margin: 0 auto;
+  width: min(95%, 700px);
+  /* border: 1px dotted yellow; */
 }
 
 .noSelect {
@@ -398,24 +435,10 @@ p {
   user-select: none;
 }
 
-img {
-  width: 100%;
-  object-fit: fill;
-  object-fit: cover;
-  object-fit: contain;
-  border-radius: 15px;
-  /* flex: 1 1 100%; */
-}
-
 .arrow {
   color: var(--highlight-color);
   font-size: 1.5rem;
-  font-size: calc(1rem + 2vw);
-  cursor: pointer;
-}
-
-.arrow:hover {
-  opacity: 0.7;
+  font-size: clamp(1rem, 1rem + 2vw, 2rem);
 }
 
 .clicked {
@@ -436,8 +459,9 @@ img {
 }
 
 .navContainer {
+  /* border: 1px dotted red; */
   width: 100%;
-  max-width: 99vw;
+  /* max-width: 99vw; */
   padding: 0 2%;
   /* margin-top: 2%; */
   display: flex;
@@ -448,23 +472,23 @@ img {
 }
 
 .navDots {
-  max-width: 80%;
+  /* border: 1px dashed green; */
+  width: 80%;
   overflow: hidden;
   display: flex;
   align-items: center;
   /* justify-content: center; */
-  /* gap: 1.1vw; */
+  gap: clamp(1.5vmax, 1vmax - 1%, 4em);
   flex: 0 10 fit-content;
 }
 
 .dotContainer {
   /* border: 1px solid rgb(13, 255, 0); */
   /* max-width: 100%; */
-  width: 7vw;
+  width: 6vw;
   height: 4vw;
-  /* max-width: 1.5rem; */
+  max-width: 4em;
   padding: 1vw;
-  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -501,62 +525,6 @@ img {
   to {
     transform: scale(1);
   }
-}
-
-.detailsContainer {
-  width: 100%;
-  display: flex;
-  /* flex-direction: column; */
-  flex-wrap: wrap;
-  justify-content: center;
-  /* align-items: center; */
-  row-gap: 2rem;
-  column-gap: 6%;
-}
-
-.ingredients {
-  width: 94%;
-  display: flex;
-  flex-direction: column;
-}
-
-.itemContainer {
-  background: var(--bg-color);
-  color: var(--text-color);
-  border-radius: 15px;
-  padding: 1.2rem 0;
-}
-
-.itemGrid {
-  width: max-content;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: max-content max-content;
-  gap: 0.3rem;
-}
-
-.itemGrid span {
-  font-size: 0.9rem;
-}
-
-.measure {
-  text-align: right;
-}
-
-.instructions {
-  width: 94%;
-}
-
-#actualInstructions {
-  font-size: 0.9rem;
-  line-height: 1.5rem;
-}
-
-.instructions p {
-  color: var(--text-color);
-  background: var(--bg-color);
-  border-radius: 15px;
-  padding: 1.2rem;
 }
 
 .footer {
@@ -618,73 +586,11 @@ a {
     background-image: linear-gradient(transparent 0%, var(--dark-bg-color) 50%), url('./assets/heroImage.jpg');
   }
 
-  .info {
-    font-size: 1.2rem;
-  }
-
-  .fetchedInfo {
-    /* border: 1px solid red; */
-    min-height: 100%;
-    margin: 1rem 0.5rem;
-    /* padding: 1rem 0; */
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: flex-start;
-    /* column-gap: 1%; */
-  }
-
-  .imageInfo {
-    /* padding: 0; */
-    width: 30%;
-    height: 100%;
-    justify-content: space-around;
-    /* align-self: center; */
-    gap: 0.5rem;
-  }
-
-  .imageContainer {
-    width: 90%;
-  }
-
-  .navContainer {
-    width: 95%;
-    /* padding: 0;
-    margin: 0; */
-  }
-
   .navDots {
     /* padding: 0; */
     /* margin: 0; */
     height: 3vw;
-    width: 80%;
-  }
-
-  .arrow {
-    font-size: 1.2rem;
-  }
-
-  .detailsContainer {
-    flex-wrap: nowrap;
-    height: 100%;
-    width: 65%;
-    max-width: 600px;
-  }
-
-  .ingredients {
-    width: max-content;
-  }
-  
-  .itemContainer {
-    padding: 1.4rem;
-  }
-  
-
-  .itemGrid span {
-    font-size: 0.8rem;
-  }
-
-  #actualInstructions {
-    font-size: 0.8rem;
+    /* width: 80%; */
   }
 
 }
@@ -698,8 +604,87 @@ a {
 @media (min-width: 1200px) {
   .hero__container {
     background-image: linear-gradient(to right, var(--dark-bg-color) 55%, transparent, var(--cream-color) 90%), url('./assets/heroImage.jpg');
-    /* background-image: linear-gradient(transparent 0%, var(--dark-bg-color) 30%), url('./assets/heroImage.jpg'); */
     background-position: right;
     background-size: auto 100%;
+  }
+}
+
+@media (orientation: landscape) {
+  .drink-info__container {
+    padding: 0 1em;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1em;
+  }
+
+  .drink-info__image-container {
+    padding: 0;
+    width: min(50%, 30em);
+    flex: 1 1 50%;
+  }
+
+  .drink-info__details-container {
+    flex: 1 1 50%;
+  }
+
+  .drink-info__title {
+    margin-bottom: 2em;
+    margin-bottom: clamp(1em, 1em + 1vw, 2em);
+  }
+
+  .details__title-wrapper {
+    margin-bottom: 0;
+  }
+
+  .details__item-container,
+  .details__text-wrapper {
+    background-color: transparent;
+    padding: 1em;
+    margin-bottom: 2em;
+  }
+
+  .details__text {
+    color: var(--dark-bg-color);
+  }
+}
+
+@media (min-width: 80em) {
+  .drink-info__container {
+    padding: 0 1em;
+  }
+
+  .drink-info__image-container {
+    /* flex: 1 0 30%; */
+    /* padding-left: 1em; */
+  }
+
+  .drink-info__details {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .drink-info__title {
+    margin-bottom: 2em;
+  }
+
+  .details__title-wrapper {
+    margin-bottom: 0;
+  }
+
+  .details__item-container,
+  .details__text-wrapper {
+    background-color: transparent;
+    padding-inline: 1em;
+    margin-bottom: 1em;
+  }
+
+  .details__text {
+    color: var(--dark-bg-color);
+  }
+
+  .details__ingredients-container,
+  .details__instructions-container {
+    flex: 1 0 50%;
   }
 }

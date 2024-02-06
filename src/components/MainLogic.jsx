@@ -154,16 +154,28 @@ const Main = props => {
       {isLoading ? <h1 className="loading">Loading...</h1> 
         : <><Form searchQuery={searchQuery} handleSubmit={handleSubmit} allDrinks={allDrinks} currentDrinks={currentDrinks} filter={filter} handleFilter={handleFilter} deleteInput={deleteInput}/>
 
-      <div className="fetchedInfo">
-        <div className="imageInfo">
-          <h2>{currentDrinks[currentDrink].name}</h2>
-          <Image image={currentDrinks[currentDrink].image} scroll={scrollImage} len={currentDrinks.length}/>
+      <div className="drink-info__container container">
+        {/* <h2 className="drink-title">{currentDrinks[currentDrink].name}</h2> */}
+        <div className="drink-info__image-container">
+          {/* <h2>{currentDrinks[currentDrink].name}</h2> */}
+          <Image
+            image={currentDrinks[currentDrink].image}
+            scroll={scrollImage}
+            len={currentDrinks.length}
+          />
           {currentDrinks.length > 1 && <NavDots num={currentDrinks.length} current={currentDrink} handleClick={imageNav} scroll={scrollImage}/>}
         </div>
 
-        <div className="detailsContainer">
-          <Ingredients measurements={currentDrinks[currentDrink].measurements} ingredients={currentDrinks[currentDrink].ingredients} />
-          <Instructions instructions={currentDrinks[currentDrink].instructions} />
+        <div className="drink-info__details-container">
+          <h2 className="drink-info__title">{currentDrinks[currentDrink].name}</h2>
+          <div className="drink-info__details">
+            <Ingredients
+              measurements={currentDrinks[currentDrink].measurements} ingredients={currentDrinks[currentDrink].ingredients}
+            />
+            <Instructions
+              instructions={currentDrinks[currentDrink].instructions}
+            />
+          </div>
         </div>
       </div></>}
 
