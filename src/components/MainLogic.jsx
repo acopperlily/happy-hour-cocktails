@@ -49,6 +49,11 @@ const MainLogic = props => {
   };
 
   useEffect(() => {
+
+    // This cancels erroneous requests
+    const controller = new AbortController();
+    const signal = controller.signal;
+
     const getDrinks = async () => {
       let url = 'https://www.thecocktaildb.com/api/json/v1/1/';
 
@@ -59,9 +64,13 @@ const MainLogic = props => {
       let details = [];
 
       try {
-        const res = await fetch(url);
-        // Test for gateway timeout
-        // const res = await fetch('https://httpstat.us/504?sleep=10000');
+        const res = await fetch(url, { signal });
+
+        if (!res.ok) {
+          setError(true);
+          throw new Error('Failed to fetch');
+        }
+
         const data = await res.json();
         const dranks = data.drinks;
         console.log('fetch drinks:', dranks);
@@ -80,7 +89,7 @@ const MainLogic = props => {
         } else {
           details.push({
             id: 'no',
-            name: 'water', 
+            name: 'Water', 
             image: waterImg,
             instructions: "Uh oh, time to rehydrate! Either your drink is not listed in the database, or you've already had one too many. Please check your spelling or try searching for a different drink.",
             measurements: ['2', '1'],
@@ -88,6 +97,13 @@ const MainLogic = props => {
           });
         }
         console.log('DEETS:', details);
+        // setIsLoading(false);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 1000);
+        setCurrentDrink(0);
+        setAllDrinks(details);
+        setCurrentDrinks(details);
 
       } catch (err) {
         console.log('Error:', err);
@@ -102,10 +118,10 @@ const MainLogic = props => {
         });
 
       } finally {
-        setIsLoading(false);
-        setCurrentDrink(0);
-        setAllDrinks(details);
-        setCurrentDrinks(details);
+        // setIsLoading(false);
+        // setCurrentDrink(0);
+        // setAllDrinks(details);
+        // setCurrentDrinks(details);
       }
 
     }
@@ -114,6 +130,10 @@ const MainLogic = props => {
     setFilter('none');
     setIngredientsList([]);
     getDrinks();
+
+    return () => {
+      controller.abort();
+    }
   }, [searchQuery]);
 
   useEffect(() => {
@@ -153,7 +173,15 @@ const MainLogic = props => {
 
   return (
     <main>
-      <Form searchQuery={searchQuery} handleSubmit={handleSubmit} allDrinks={allDrinks} currentDrinks={currentDrinks} filter={filter} handleFilter={handleFilter} deleteInput={deleteInput}/>
+      <Form
+        searchQuery={searchQuery}
+        handleSubmit={handleSubmit}
+        allDrinks={allDrinks}
+        currentDrinks={currentDrinks}
+        filter={filter}
+        handleFilter={handleFilter} 
+        deleteInput={deleteInput}
+      />
 
       {isLoading ? <h1 className="loading">Loading....</h1> : <div className="drink-info__container container">
         {/* <h2 className="drink-title">{currentDrinks[currentDrink].name}</h2> */}
