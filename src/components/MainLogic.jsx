@@ -12,7 +12,7 @@ import NavDots from "./NavDots";
 import errorWater from "../errorWater";
 import waterImg from '../assets/lemonWater.jpg';
 
-const Main = props => {
+const MainLogic = props => {
   const [allDrinks, setAllDrinks] = useState([]);
   const [currentDrinks, setCurrentDrinks] = useState([]);
   const [ingredientsList, setIngredientsList] = useState([]);
@@ -60,6 +60,8 @@ const Main = props => {
 
       try {
         const res = await fetch(url);
+        // Test for gateway timeout
+        // const res = await fetch('https://httpstat.us/504?sleep=10000');
         const data = await res.json();
         const dranks = data.drinks;
         console.log('fetch drinks:', dranks);
@@ -151,10 +153,9 @@ const Main = props => {
 
   return (
     <main>
-      {isLoading ? <h1 className="loading">Loading...</h1> 
-        : <><Form searchQuery={searchQuery} handleSubmit={handleSubmit} allDrinks={allDrinks} currentDrinks={currentDrinks} filter={filter} handleFilter={handleFilter} deleteInput={deleteInput}/>
+      <Form searchQuery={searchQuery} handleSubmit={handleSubmit} allDrinks={allDrinks} currentDrinks={currentDrinks} filter={filter} handleFilter={handleFilter} deleteInput={deleteInput}/>
 
-      <div className="drink-info__container container">
+      {isLoading ? <h1 className="loading">Loading....</h1> : <div className="drink-info__container container">
         {/* <h2 className="drink-title">{currentDrinks[currentDrink].name}</h2> */}
         <div className="drink-info__image-container">
           {/* <h2>{currentDrinks[currentDrink].name}</h2> */}
@@ -177,10 +178,10 @@ const Main = props => {
             />
           </div>
         </div>
-      </div></>}
+      </div>}
 
     </main>
   );
 };
 
-export default Main;
+export default MainLogic;

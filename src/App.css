@@ -30,6 +30,7 @@
 }
 
 .loading {
+  margin-top: 2rem;
   color: var(--text-color);
   font-family: var(--bold-s-ff);
   font-size: 2rem;
