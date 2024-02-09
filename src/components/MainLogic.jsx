@@ -10,9 +10,9 @@ import Ingredients from './Ingredients';
 import Instructions from './Instructions';
 import NavDots from "./NavDots";
 import errorWater from "../errorWater";
-import waterImg from '../assets/lemonWater.jpg';
 
-const MainLogic = props => {
+
+const MainLogic = () => {
   const [allDrinks, setAllDrinks] = useState([]);
   const [currentDrinks, setCurrentDrinks] = useState([]);
   const [ingredientsList, setIngredientsList] = useState([]);
@@ -21,8 +21,22 @@ const MainLogic = props => {
   const [filter, setFilter] = useState('none');
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
-  // console.log('allDrinks:', margaritas);
-  // console.log('main props', props.randomDrink);
+
+
+  const formatData = drinks => {
+    const processedDrinkData = [];
+    for (let drink of drinks) {
+      processedDrinkData.push({
+        id: drink.idDrink,
+        name: drink.strDrink,
+        image: drink.strDrinkThumb,
+        instructions: drink.strInstructions,
+        measurements: getList(drink, 'strMeasure'),
+        ingredients: getList(drink, 'strIngredient')
+      });
+    }
+    return processedDrinkData;
+  }
 
 
   const getList = (drink, item) => {
@@ -49,8 +63,9 @@ const MainLogic = props => {
   };
 
   useEffect(() => {
+    let isFetchSuccessful = false;
 
-    // This cancels erroneous requests
+    // This aborts erroneous requests
     const controller = new AbortController();
     const signal = controller.signal;
 
@@ -61,75 +76,65 @@ const MainLogic = props => {
         ? `search.php?s=${searchQuery}`
         : 'random.php';
 
-      let details = [];
-
       try {
+        setError(false)
         const res = await fetch(url, { signal });
-
+        // const res = await fetch(url);
+        console.log('res:', res);
         if (!res.ok) {
-          setError(true);
-          throw new Error('Failed to fetch');
+          // setError(true);
+          // throw new Error('Failed to fetch');
+          console.log('not ok');
         }
 
         const data = await res.json();
-        const dranks = data.drinks;
+        console.log('data:', data);
+        const dranks = data.drinks || [errorWater];
+
         console.log('fetch drinks:', dranks);
 
-        if (dranks) {
-          for (let drink of dranks) {
-            details.push({
-              id: drink.idDrink,
-              name: drink.strDrink,
-              image: drink.strDrinkThumb,
-              instructions: drink.strInstructions,
-              measurements: getList(drink, 'strMeasure'),
-              ingredients: getList(drink, 'strIngredient')
-            });
-          }
-        } else {
-          details.push({
-            id: 'no',
-            name: 'Water', 
-            image: waterImg,
-            instructions: "Uh oh, time to rehydrate! Either your drink is not listed in the database, or you've already had one too many. Please check your spelling or try searching for a different drink.",
-            measurements: ['2', '1'],
-            ingredients: ['Hydrogen', 'Oxygen', 'Ice cubes', 'Lemon wedge']
-          });
-        }
-        console.log('DEETS:', details);
-        // setIsLoading(false);
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 1000);
-        setCurrentDrink(0);
-        setAllDrinks(details);
-        setCurrentDrinks(details);
+        const allDrinks = formatData(dranks);
+        setAllDrinks(allDrinks);
+        setCurrentDrinks(allDrinks);
+        // setCurrentDrink(0)
+
+        console.log('DEETS:', allDrinks);
+        isFetchSuccessful = true;
 
       } catch (err) {
-        console.log('Error:', err);
-        setError(true);
-        details.push({
-          id: 'no',
-          name: 'water', 
-          image: waterImg,
-          instructions: "Uh oh, something went wrong. Time to rehydrate!",
-          measurements: ['2', '1'],
-          ingredients: ['Hydrogen', 'Oxygen', 'Ice cubes', 'Lemon wedge']
-        });
+        if (err.name === 'AbortError') {
+          console.log('Fetch aborted');
+        } else {
+          console.log('Error:', err);
+        }
 
       } finally {
-        // setIsLoading(false);
-        // setCurrentDrink(0);
-        // setAllDrinks(details);
-        // setCurrentDrinks(details);
+        if (!isFetchSuccessful) {
+          const water = [
+            {
+              ...errorWater,
+              strInstructions: 'Uh oh, something went wrong. Time to rehydrate!'
+            }
+          ];
+          console.log('water:', water);
+          const formattedWater = formatData(water)
+          setAllDrinks(formattedWater)
+          setCurrentDrinks(formattedWater)
+        }
+        setError(false)
+        setIsLoading(false);
+        setCurrentDrink(0);
+
+        console.log('finally?', allDrinks)
+        setFilter('none');
+        setIngredientsList([]);
       }
+
 
     }
     
-    console.log('effect, current drink:', currentDrink);
-    setFilter('none');
-    setIngredientsList([]);
     getDrinks();
+    console.log('effect, current drink:', currentDrink); 
 
     return () => {
       controller.abort();

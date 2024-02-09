@@ -2,6 +2,8 @@ import React, { Fragment } from 'react';
 
 const Ingredients = ({ measurements, ingredients }) => {
 
+  console.log('meas & ing:', measurements, ingredients);
+
   const items = ingredients.map((item, index) => (
     <Fragment key={index}>
       <p className="details__measure details__text">{measurements[index]}</p>
