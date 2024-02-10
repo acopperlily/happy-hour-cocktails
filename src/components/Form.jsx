@@ -1,19 +1,18 @@
-import React, { useEffect } from "react";
-import { useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { FaTimes } from "react-icons/fa";
 import { FaChevronDown } from "react-icons/fa";
 
 const Form = props => {
-  const [searchValue, setSearchValue] = useState('');
   const [ingredients, setIngredients] = useState(null);
   const [showFilter, setShowFilter] = useState(false);
 
   const handleChange = e => {
-    setSearchValue(e.target.value);
+    props.onInputChange(e.target.value);
     setShowFilter(false);
   };
 
-  // console.log('form prop ingredients:', props.allDrinks);
+  // allDrinks[], currentDrinks[], deleteInput(), filter, handleFilter(), handleSubmit(), searchQuery
+  console.log('form props:', props);
 
   useEffect(() => {
     const items = [];
@@ -28,16 +27,14 @@ const Form = props => {
     }
     items.sort();
     console.log('items array in useEffect:', items);
-    console.log('show filter?', showFilter);
+    // console.log('show filter?', showFilter);
     setIngredients(items);
     if (props.allDrinks.length > 1) setShowFilter(true);
-    setSearchValue(props.searchQuery);
   }, [props.allDrinks]);
 
   const clearSearch = () => {
-    console.log('clar?');
-    setSearchValue('');
-    setShowFilter(false);
+    props.onDeleteInput();
+    // setShowFilter(false);
   };
 
   return (
@@ -47,7 +44,7 @@ const Form = props => {
         <p className="hero__text">Thirsty for something different? Search for drinks freshly served up by TheCocktailDB API. Tiny umbrellas not included.</p>
 
         <div className="hero__form_container">
-          <form className="hero__form" onSubmit={e => props.handleSubmit(e, searchValue)}>
+          <form className="hero__form" onSubmit={e => props.handleSubmit(e)}>
             <div className="form__search">
               <label className="form__label" htmlFor="search">Search by Name</label>
               <div className="form__input">
@@ -55,10 +52,13 @@ const Form = props => {
                   type="text"
                   name="search" 
                   id="search"
-                  value={searchValue}
+                  value={props.searchQuery}
                   onChange={handleChange}
                 />
-                <FaTimes className="form__delete_icon form__icon clickable" onClick={clearSearch} />
+                <FaTimes 
+                  className="form__delete_icon form__icon clickable"
+                  onClick={clearSearch} 
+                />
 
               </div>
               <button className="form__btn form__btn_primary clickable" type="submit">Get Drinks</button>

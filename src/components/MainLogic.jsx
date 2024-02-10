@@ -21,6 +21,7 @@ const MainLogic = () => {
   const [filter, setFilter] = useState('none');
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [triggerFetch, setTriggerFetch] = useState(false)
 
 
   const formatData = drinks => {
@@ -53,14 +54,13 @@ const MainLogic = () => {
     return list;
   }
 
-  const handleSubmit = (e, searchValue) => {
+  const handleSubmit = e => {
     e.preventDefault();
-    console.log(e);
-    console.log(searchValue);
-    searchValue = searchValue.trim().toLowerCase();
-    setSearchQuery(searchValue);
+    let text = searchQuery.trim().toLowerCase();
+    setSearchQuery(text);
     setIsLoading(true);
-  };
+    setTriggerFetch(!triggerFetch);
+  }
 
   useEffect(() => {
     let isFetchSuccessful = false;
@@ -139,7 +139,7 @@ const MainLogic = () => {
     return () => {
       controller.abort();
     }
-  }, [searchQuery]);
+  }, [triggerFetch]);
 
   useEffect(() => {
     console.log('drinks:', allDrinks);
@@ -171,8 +171,12 @@ const MainLogic = () => {
     setFilter(e.target.value);
   };
 
-  const deleteInput = e => {
-    console.log('delete? show filter?', filter);
+  const handleInputChange = text => {
+    setSearchQuery(text);
+  };
+
+  const deleteInput = () => {
+    setSearchQuery('');
     setFilter('none');
   };
 
@@ -185,7 +189,8 @@ const MainLogic = () => {
         currentDrinks={currentDrinks}
         filter={filter}
         handleFilter={handleFilter} 
-        deleteInput={deleteInput}
+        onDeleteInput={deleteInput}
+        onInputChange={handleInputChange}
       />
 
       {isLoading ? <h1 className="loading">Loading....</h1> : <div className="drink-info__container container">
