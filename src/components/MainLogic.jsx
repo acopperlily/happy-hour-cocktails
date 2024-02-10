@@ -54,6 +54,18 @@ const MainLogic = () => {
     return list;
   }
 
+  // Handle user input for search query
+  const handleInputChange = text => {
+    setSearchQuery(text);
+  };
+
+  const deleteInput = () => {
+    setSearchQuery('');
+    setFilter('none');
+  };
+
+
+  // Validate user input and initiate fetch request
   const handleSubmit = e => {
     e.preventDefault();
     let text = searchQuery.trim().toLowerCase();
@@ -141,18 +153,6 @@ const MainLogic = () => {
     }
   }, [triggerFetch]);
 
-  useEffect(() => {
-    console.log('drinks:', allDrinks);
-    if (filter !== 'none') {
-      const filteredDrinks = allDrinks.filter(drink => drink.ingredients.map(item => item.toLowerCase()).includes(filter.toLowerCase()));
-      console.log('filteredDrinks:', filteredDrinks);
-      setCurrentDrinks(filteredDrinks);
-    } else {
-      setCurrentDrinks(allDrinks);
-    }
-    setCurrentDrink(0);
-  }, [filter]);
-
   const scrollImage = (i) => {
     const len = currentDrinks.length;
     if (i === -1 && currentDrink === 0) i = len - 1;
@@ -171,14 +171,19 @@ const MainLogic = () => {
     setFilter(e.target.value);
   };
 
-  const handleInputChange = text => {
-    setSearchQuery(text);
-  };
+  // Display drinks filtered by ingredient on button click
+  const handleFilterSubmit = () => {
+    console.log('handle filter submit:', allDrinks);
+    if (filter !== 'none') {
+      const filteredDrinks = allDrinks.filter(drink => drink.ingredients.map(item => item.toLowerCase()).includes(filter.toLowerCase()));
+      console.log('filteredDrinks:', filteredDrinks);
+      setCurrentDrinks(filteredDrinks);
+    } else {
+      setCurrentDrinks(allDrinks);
+    }
+    setCurrentDrink(0);
+  }
 
-  const deleteInput = () => {
-    setSearchQuery('');
-    setFilter('none');
-  };
 
   return (
     <main>
@@ -191,6 +196,7 @@ const MainLogic = () => {
         handleFilter={handleFilter} 
         onDeleteInput={deleteInput}
         onInputChange={handleInputChange}
+        onFilterSubmit={handleFilterSubmit}
       />
 
       {isLoading ? <h1 className="loading">Loading....</h1> : <div className="drink-info__container container">

@@ -6,12 +6,7 @@ const Form = props => {
   const [ingredients, setIngredients] = useState(null);
   const [showFilter, setShowFilter] = useState(false);
 
-  const handleChange = e => {
-    props.onInputChange(e.target.value);
-    setShowFilter(false);
-  };
-
-  // allDrinks[], currentDrinks[], deleteInput(), filter, handleFilter(), handleSubmit(), searchQuery
+  // allDrinks[], currentDrinks[], onDeleteInput(), filter, handleFilter(), handleSubmit(), searchQuery, onInputChange()
   console.log('form props:', props);
 
   useEffect(() => {
@@ -32,10 +27,18 @@ const Form = props => {
     if (props.allDrinks.length > 1) setShowFilter(true);
   }, [props.allDrinks]);
 
-  const clearSearch = () => {
-    props.onDeleteInput();
-    // setShowFilter(false);
+
+  // Update search query
+  const handleChange = e => {
+    props.onInputChange(e.target.value);
+    setShowFilter(false);
   };
+
+  // Filter by ingredient on button click
+  const handleFilter = e => {
+    e.preventDefault();
+    props.onFilterSubmit();
+  }
 
   return (
     <section className="hero">
@@ -57,11 +60,17 @@ const Form = props => {
                 />
                 <FaTimes 
                   className="form__delete_icon form__icon clickable"
-                  onClick={clearSearch} 
+                  // onClick={clearSearch} 
+                  onClick={() => props.onDeleteInput()}
                 />
 
               </div>
-              <button className="form__btn form__btn_primary clickable" type="submit">Get Drinks</button>
+              <button
+                className="form__btn form__btn_primary clickable"
+                type="submit"
+              >
+                Get Drinks
+                </button>
             </div>
 
             {showFilter && <div className="form__filter">
@@ -85,7 +94,12 @@ const Form = props => {
                 </select>
                 <FaChevronDown className="form__delete_icon form__icon clickable" />
               </div>
-              <button className="form__btn form__btn_secondary clickable" type="submit">Filter Drinks</button>
+              <button 
+                className="form__btn form__btn_secondary clickable" type="submit"
+                onClick={handleFilter}
+              >
+                Filter Drinks
+              </button>
             </div>}
 
           </form>
