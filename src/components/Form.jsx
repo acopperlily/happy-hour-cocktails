@@ -6,6 +6,8 @@ const Form = props => {
   const [ingredients, setIngredients] = useState(null);
   const [showFilter, setShowFilter] = useState(false);
 
+  const charLimit = 50;
+
   // allDrinks[], currentDrinks[], onDeleteInput(), filter, handleFilter(), handleSubmit(), searchQuery, onInputChange()
   console.log('form props:', props);
 
@@ -55,16 +57,17 @@ const Form = props => {
                   type="text"
                   name="search" 
                   id="search"
+                  maxLength={charLimit}
                   value={props.searchQuery}
                   onChange={handleChange}
                 />
                 <FaTimes 
                   className="form__delete_icon form__icon clickable"
-                  // onClick={clearSearch} 
                   onClick={() => props.onDeleteInput()}
                 />
 
               </div>
+
               <button
                 className="form__btn form__btn_primary clickable"
                 type="submit"
@@ -76,12 +79,14 @@ const Form = props => {
             {showFilter && <div className="form__filter">
               <label className="form__label" htmlFor="filter">Filter by Ingredient</label>
               <div className="form__select">
+
                 <select
                   name="filter"
                   id="filter"
                   value={props.filter}
                   onChange={e => props.handleFilter(e)} 
                 >
+
                   <option value="none">-- None --</option>
                   {ingredients.map((item, i) => (
                     <option
@@ -92,8 +97,14 @@ const Form = props => {
                     </option>
                   ))}
                 </select>
-                <FaChevronDown className="form__delete_icon form__icon clickable" />
+
+                <FaChevronDown
+                  className="form__delete_icon form__icon clickable"
+                  style={{pointerEvents: 'none'}}
+                />
+
               </div>
+
               <button 
                 className="form__btn form__btn_secondary clickable" type="submit"
                 onClick={handleFilter}
@@ -102,7 +113,9 @@ const Form = props => {
               </button>
             </div>}
 
+
           </form>
+
         </div>
       </div>
 
