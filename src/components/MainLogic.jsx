@@ -31,6 +31,8 @@ const MainLogic = () => {
         id: drink.idDrink,
         name: drink.strDrink,
         image: drink.strDrinkThumb,
+        container: drink.strGlass,
+        tags: drink.strTags,
         instructions: drink.strInstructions,
         measurements: getList(drink, 'strMeasure'),
         ingredients: getList(drink, 'strIngredient')
@@ -207,6 +209,8 @@ const MainLogic = () => {
           {/* <h2>{currentDrinks[currentDrink].name}</h2> */}
           <Image
             image={currentDrinks[currentDrink].image}
+            container={currentDrinks[currentDrink].container}
+            tags={currentDrinks[currentDrink].tags}
             scroll={scrollImage}
             len={currentDrinks.length}
           />
