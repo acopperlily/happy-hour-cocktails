@@ -318,6 +318,10 @@ button:active {
   transform: scale(0.98);
 }
 
+button:disabled {
+  cursor: not-allowed;
+}
+
 select {
   text-transform: capitalize;
   -moz-appearance: none;

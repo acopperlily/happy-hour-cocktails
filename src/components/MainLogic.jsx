@@ -135,6 +135,7 @@ const MainLogic = () => {
         }
         setError(false)
         setIsLoading(false);
+        // setTimeout(() => setIsLoading(false), 1000)
         setCurrentDrink(0);
 
         console.log('finally?', allDrinks)
@@ -188,6 +189,7 @@ const MainLogic = () => {
   return (
     <main>
       <Form
+        isLoading={isLoading}
         searchQuery={searchQuery}
         handleSubmit={handleSubmit}
         allDrinks={allDrinks}

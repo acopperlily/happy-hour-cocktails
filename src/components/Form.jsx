@@ -71,6 +71,7 @@ const Form = props => {
               <button
                 className="form__btn form__btn_primary clickable"
                 type="submit"
+                disabled={props.isLoading}
               >
                 Get Drinks
                 </button>
