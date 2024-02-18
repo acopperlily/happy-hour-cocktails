@@ -6,7 +6,12 @@ const Header = props => {
     <header className="header">
       <div className="header__container container">
         <h1 className="header__logo">Happy Hour Cocktails</h1>
-        <FaInfoCircle className="header__info clickable" onClick={props.toggleModal} />
+
+        <FaInfoCircle 
+          className="header__info clickable" 
+          onClick={props.toggleModal}
+        />
+
       </div>
     </header>
   );

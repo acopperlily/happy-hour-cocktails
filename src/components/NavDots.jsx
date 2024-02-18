@@ -9,6 +9,7 @@ const NavDots = ({ num, current, handleClick, scroll }) => {
     e.target.scrollIntoView({
       behavior: 'smooth',
       block: 'nearest',
+      // block: 'center',
       inline: 'center'
     });
   };

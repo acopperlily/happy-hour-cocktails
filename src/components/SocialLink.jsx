@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const SocialLink = ({ link, icon }) => {
 
@@ -6,6 +6,7 @@ const SocialLink = ({ link, icon }) => {
     <a 
       href={link}
       target='_blank'
+      rel='noopener noreferrer'
       className='footer__link clickable'
     >
       <i className='footer__icon'>{icon}</i>

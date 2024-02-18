@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import margaritas from '../margaritas';
 import rum from '../rum';
 import gin from "../gin";
@@ -22,6 +22,7 @@ const MainLogic = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
   const [triggerFetch, setTriggerFetch] = useState(false)
+  const imageRef = useRef(null);
 
 
   const formatData = drinks => {
@@ -74,6 +75,7 @@ const MainLogic = () => {
     setSearchQuery(text);
     setIsLoading(true);
     setTriggerFetch(!triggerFetch);
+    imageRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   useEffect(() => {
@@ -185,6 +187,7 @@ const MainLogic = () => {
       setCurrentDrinks(allDrinks);
     }
     setCurrentDrink(0);
+    imageRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
 
@@ -205,7 +208,7 @@ const MainLogic = () => {
 
       {isLoading ? <h1 className="loading">Loading....</h1> : <div className="drink-info__container container">
         {/* <h2 className="drink-title">{currentDrinks[currentDrink].name}</h2> */}
-        <div className="drink-info__image-container">
+        <div ref={imageRef} className="drink-info__image-container">
           {/* <h2>{currentDrinks[currentDrink].name}</h2> */}
           <Image
             image={currentDrinks[currentDrink].image}

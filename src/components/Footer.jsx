@@ -1,24 +1,9 @@
 import React from "react";
-import { FaTwitter, FaGithub, FaLinkedin } from 'react-icons/fa';
 import SocialLink from "./SocialLink";
-
-const socialInfo = [
-  { link: 'https://twitter.com/aprilcopley_dev', icon: FaTwitter },
-  { link: 'https://github.com/acopperlily', icon: FaGithub },
-  { link: 'https://www.linkedin.com/in/april-copley', icon: FaLinkedin}
-];
+import socialInfo from "../utils/socialInfo";
+import getDateRange from "../utils/getDateRange";
 
 function Footer() {
-
-  const startYear = 2022;
-  const currentYear = new Date().getFullYear();
-
-  let dateRange = startYear;
-
-  if (currentYear > startYear) {
-    // En dash unicode: \u2013
-    dateRange += `\u2013${currentYear}`; 
-  }
 
   return (
 
@@ -27,10 +12,19 @@ function Footer() {
       <div className="footer__container container">
 
         <div className="footer__info">
-          <span className="footer__dates">&copy; {dateRange}</span>
-          <a href="https://aprilcopley.netlify.app" target="_blank" className="footer__portfolio footer__link clickable">
-            April Copley
+
+          <span className="footer__dates">
+            &copy; {getDateRange(2022)}
+          </span>
+
+          <a
+            href="https://aprilcopley.netlify.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="footer__portfolio footer__link clickable">
+              April Copley
           </a>
+
         </div>
 
         <div className="footer__links">

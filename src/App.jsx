@@ -8,8 +8,7 @@ import Modal from './components/Modal';
 function App() {
   const [displayInfo, setDisplayInfo] = useState(false);
 
-  const toggleModal = e => {
-    console.log('toggle modal');
+  const toggleModal = () => {
     setDisplayInfo(!displayInfo);
   };
 
