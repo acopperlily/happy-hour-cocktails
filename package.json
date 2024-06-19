@@ -1,9 +1,26 @@
 {
   "name": "happy-hour-cocktails",
-  "homepage": "https://acopperlily.github.io/happy-hour-cocktails/",
+  "homepage": "https://acopperlily.github.io/happy-hour-cocktails",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "description": "A web app that retrieves drink information from an API.",
+  "keywords": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "React",
+    "Vite",
+    "API"
+  ],
+  "author": {
+    "name": "April Copley",
+    "email": "april.copley@protonmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acopperlily/happy-hour-cocktails"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",

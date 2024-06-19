@@ -2,7 +2,7 @@ import { FaTwitter, FaGithub, FaLinkedin} from 'react-icons/fa';
 
 const socialInfo = [
   { 
-    link: 'https://twitter.com/aprilcopley_dev', 
+    link: 'https://twitter.com/acopperlily', 
     icon: FaTwitter 
   },
   { 

@@ -1,25 +1,31 @@
 # Happy Hour Cocktails
-Thirsty for something different? Users can search for drinks freshly served up by TheCocktailDB API. Tiny umbrellas not included.
+Thirsty for something different? Search for drinks freshly served up by TheCocktailDB API. Tiny umbrellas not included.
 
-**Link to project:** https://acopperlily.github.io/happy-hour-cocktails/
+**Link to project:** https://acopperlily.github.io/happy-hour-cocktails
 
-<!-- ![alt tag](https://github.com/acopperlily/happy-hour-cocktails/blob/main/preview.png) -->
+![Screenshot of Happy Hour Cocktails website](https://raw.githubusercontent.com/acopperlily/portfolio/main/src/assets/happy-hour-cocktails.webp)
 
 ## How It's Made:
 
-**Tech used:** HTML, CSS, JavaScript, Fetch API
+**Tech used:** 
+- ![vite](./src/assets/vite.svg) Vite
+- ![react](./src/assets/react.svg) React
+- ![html](./src/assets/html.svg) HTML
+- ![css](./src/assets/css.svg) CSS
+- ![javascript](./src/assets/javascript.svg) JavaScript
 
 I implemented a fetch request to TheCocktailDB API to retrieve a list of drinks.
 
 ## Optimizations
 
-I would like to automate the image carousel.
+I would like to automate the image carousel by implementing features like play and pause.
 
 ## Lessons Learned:
 
 Cycling through images can be tricky.
 
 ## Examples:
-Take a look at this example that I have in my own portfolio:
 
-**Digital Canvas:** https://acopperlily.github.io/digital-canvas/
+**Digital Canvas:** https://acopperlily.github.io/digital-canvas
+
+**Cats On Demand:** https://acopperlily.github.io/cats-on-demand
