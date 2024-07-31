@@ -101,37 +101,49 @@ const MainLogic = () => {
         if (!res.ok) {
           // setError(true);
           // throw new Error('Failed to fetch');
-          console.log('not ok');
+          console.error('not ok');
         }
 
         const data = await res.json();
         console.log('data:', data);
-        const dranks = data.drinks || [errorWater];
+        let dranks;
+        let allDrinks;
+        if (data.drinks !== null) {
+          dranks = data.drinks// || [errorWater];
+          console.log('fetch drinks:', dranks);
 
-        console.log('fetch drinks:', dranks);
+          const allDrinks = formatData(dranks);
+          setAllDrinks(allDrinks);
+          setCurrentDrinks(allDrinks);
+          isFetchSuccessful = true;
+        }
 
-        const allDrinks = formatData(dranks);
-        setAllDrinks(allDrinks);
-        setCurrentDrinks(allDrinks);
+        // console.log('fetch drinks:', dranks);
+
+        // const allDrinks = formatData(dranks);
+        // setAllDrinks(allDrinks);
+        // setCurrentDrinks(allDrinks);
         // setCurrentDrink(0)
 
-        console.log('DEETS:', allDrinks);
-        isFetchSuccessful = true;
+        // console.log('DEETS:', allDrinks);
+        // isFetchSuccessful = true;
 
       } catch (err) {
+        setError(true);
         if (err.name === 'AbortError') {
-          console.log('Fetch aborted');
+          console.error('Fetch aborted', err);
         } else {
-          console.log('Error:', err);
+          console.error('Error:', err);
         }
 
       } finally {
         if (!isFetchSuccessful) {
+          setError(true);
           const water = [
             {
               ...errorWater,
-              strDrinkThumb: lemonWater,
-              strInstructions: 'Uh oh, something went wrong. Time to rehydrate!'
+              strDrinkThumb: '/lemonWater.jpg',
+              // strInstructions: 'Uh oh, something went wrong. Time to rehydrate!'
             }
           ];
           console.log('water:', water);
@@ -139,7 +151,7 @@ const MainLogic = () => {
           setAllDrinks(formattedWater)
           setCurrentDrinks(formattedWater)
         }
-        setError(false)
+        // setError(false)
         setIsLoading(false);
         // setTimeout(() => setIsLoading(false), 1000)
         setCurrentDrink(0);
@@ -148,7 +160,7 @@ const MainLogic = () => {
         setFilter('none');
         setIngredientsList([]);
       }
-
+      console.log('is fetch successful?', isFetchSuccessful);
 
     }
     
@@ -213,7 +225,7 @@ const MainLogic = () => {
         <div ref={imageRef} className="drink-info__image-container">
           {/* <h2>{currentDrinks[currentDrink].name}</h2> */}
           <Image
-            image={currentDrinks[currentDrink].image}
+            image={error ? lemonWater : currentDrinks[currentDrink].image}
             container={currentDrinks[currentDrink].container}
             tags={currentDrinks[currentDrink].tags}
             scroll={scrollImage}
