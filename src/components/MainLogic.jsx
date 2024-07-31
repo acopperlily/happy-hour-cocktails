@@ -73,6 +73,9 @@ const MainLogic = () => {
   const handleSubmit = e => {
     e.preventDefault();
     let text = searchQuery.trim().toLowerCase();
+    
+    // Yeet suspicious characters
+    text = text.replace(/[^a-z\s]/g, '');
     setSearchQuery(text);
     setIsLoading(true);
     setTriggerFetch(!triggerFetch);
@@ -96,20 +99,16 @@ const MainLogic = () => {
       try {
         setError(false)
         const res = await fetch(url, { signal });
-        // const res = await fetch(url);
         console.log('res:', res);
         if (!res.ok) {
-          // setError(true);
-          // throw new Error('Failed to fetch');
+          setError(true);
           console.error('not ok');
         }
 
         const data = await res.json();
         console.log('data:', data);
-        let dranks;
-        let allDrinks;
         if (data.drinks !== null) {
-          dranks = data.drinks// || [errorWater];
+          const dranks = data.drinks;
           console.log('fetch drinks:', dranks);
 
           const allDrinks = formatData(dranks);
@@ -117,16 +116,6 @@ const MainLogic = () => {
           setCurrentDrinks(allDrinks);
           isFetchSuccessful = true;
         }
-
-        // console.log('fetch drinks:', dranks);
-
-        // const allDrinks = formatData(dranks);
-        // setAllDrinks(allDrinks);
-        // setCurrentDrinks(allDrinks);
-        // setCurrentDrink(0)
-
-        // console.log('DEETS:', allDrinks);
-        // isFetchSuccessful = true;
 
       } catch (err) {
         setError(true);
@@ -143,7 +132,6 @@ const MainLogic = () => {
             {
               ...errorWater,
               strDrinkThumb: '/lemonWater.jpg',
-              // strInstructions: 'Uh oh, something went wrong. Time to rehydrate!'
             }
           ];
           console.log('water:', water);
@@ -151,9 +139,7 @@ const MainLogic = () => {
           setAllDrinks(formattedWater)
           setCurrentDrinks(formattedWater)
         }
-        // setError(false)
         setIsLoading(false);
-        // setTimeout(() => setIsLoading(false), 1000)
         setCurrentDrink(0);
 
         console.log('finally?', allDrinks)
