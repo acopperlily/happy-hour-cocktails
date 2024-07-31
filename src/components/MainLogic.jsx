@@ -10,7 +10,7 @@ import Ingredients from './Ingredients';
 import Instructions from './Instructions';
 import NavDots from "./NavDots";
 import errorWater from "../errorWater";
-import lemonWater from "../../public/lemonWater.jpg";
+import lemonWater from "/lemonWater.jpg";
 
 
 const MainLogic = () => {
