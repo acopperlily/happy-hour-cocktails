@@ -10,6 +10,7 @@ import Ingredients from './Ingredients';
 import Instructions from './Instructions';
 import NavDots from "./NavDots";
 import errorWater from "../errorWater";
+import lemonWater from "../../public/lemonWater.jpg";
 
 
 const MainLogic = () => {
@@ -129,6 +130,7 @@ const MainLogic = () => {
           const water = [
             {
               ...errorWater,
+              strDrinkThumb: lemonWater,
               strInstructions: 'Uh oh, something went wrong. Time to rehydrate!'
             }
           ];
