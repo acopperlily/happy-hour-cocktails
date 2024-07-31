@@ -10,7 +10,7 @@ const errorWater = {
   "strMeasure2": "1 molecule",
   "strMeasure3": "Cubed or crushed",
   "strMeasure4": "Slices",
-  "strDrinkThumb": "./src/assets/lemonWater.jpg"
+  "strDrinkThumb": "/lemonWater.jpg"
 };
 
 export default errorWater;
