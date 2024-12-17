@@ -1,18 +1,18 @@
 # Happy Hour Cocktails
 Thirsty for something different? Search for drinks freshly served up by TheCocktailDB API. Tiny umbrellas not included.
 
-**Link to Project:** https://acopperlily.github.io/happy-hour-cocktails
+**[Visit live site](https://acopperlily.github.io/happy-hour-cocktails)**
 
-![Screenshot of Happy Hour Cocktails website](https://raw.githubusercontent.com/acopperlily/portfolio/main/src/assets/happy-hour-cocktails.webp)
+![Screenshot of Happy Hour Cocktails website](./src/assets/happy-hour-cocktails.webp)
 
 ## How It's Made:
 
 **Tech Used:** 
-- ![vite](./src/assets/vite.svg) Vite
-- ![react](./src/assets/react.svg) React
-- ![html](./src/assets/html.svg) HTML
-- ![css](./src/assets/css.svg) CSS
-- ![javascript](./src/assets/javascript.svg) JavaScript
+- <img src="./src/assets/vite.svg" width="24" /> Vite
+- <img src="./src/assets/react.svg" width="24" /> React
+- <img src="./src/assets/html.svg" width="24" /> HTML
+- <img src="./src/assets/css.svg" width="24" /> CSS
+- <img src="./src/assets/javascript.svg" width="24" /> JavaScript
 
 This is a React project created using Vite. By using the Fetch API, requests are made to the TheCocktailDB API. The API returns a list of drink information including photos, ingredients, and mixing instructions. You can then filter the drink list by selecting an ingredient.
 
@@ -26,6 +26,8 @@ Cycling through images can be tricky! I learned how to implement both arrows and
 
 ## More Examples:
 
-**Digital Canvas:** https://acopperlily.github.io/digital-canvas
+**[Digital Canvas](https://acopperlily.github.io/digital-canvas)**
 
-**Cats On Demand:** https://acopperlily.github.io/cats-on-demand
+**[Catalyzer](https://catalyzer.netlify.app)**
+
+**[Cats On Demand](https://acopperlily.github.io/cats-on-demand)**
