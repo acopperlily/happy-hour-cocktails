@@ -1,9 +1,13 @@
-import { FaTwitter, FaGithub, FaLinkedin} from 'react-icons/fa';
+import { FaTwitter, FaBluesky, FaGithub, FaLinkedin } from 'react-icons/fa6';
 
 const socialInfo = [
   { 
     link: 'https://x.com/acopperlily', 
     icon: FaTwitter 
+  },
+  {
+    link: 'https://bsky.app/profile/acopperlily.bsky.social',
+    icon: FaBluesky
   },
   { 
     link: 'https://github.com/acopperlily', 
